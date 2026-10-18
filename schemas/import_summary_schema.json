@@ -3,5 +3,6 @@
     "created": 0,
     "failed": 0,
     "skipped": 0,
-    "total": 0
+    "total": 0,
+    "recovery_rate": 0.0
 }
