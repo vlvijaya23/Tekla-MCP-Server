@@ -383,20 +383,21 @@ def create_beam(
             }
 
         return {
-    "status": "insert_failed",
-    "name": beam.Name,
-    "profile": profile,
-    "start": [
-        start_x,
-        start_y,
-        start_z
-    ],
-    "end": [
-        end_x,
-        end_y,
-        end_z
-    ]
-}
+            "status": "insert_failed",
+            "name": beam.Name,
+            "profile": profile,
+            "length": length,
+            "start": [
+                start_x,
+                start_y,
+                start_z
+            ],
+            "end": [
+                end_x,
+                end_y,
+                end_z
+            ]
+        }
 
     except Exception as ex:
 
@@ -580,6 +581,38 @@ if __name__ == "__main__":
         )
 
         print(result)
+
+        with open(
+            "failed_members.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                result["errors"],
+                f,
+                indent=4
+            )
+
+        profile_count = {}
+
+        for err in result["errors"]:
+
+            profile = err["profile"]
+
+            profile_count[profile] = (
+                profile_count.get(profile, 0) + 1
+            )
+
+        print()
+        print("FAILURES BY PROFILE")
+
+        for p, c in sorted(
+            profile_count.items(),
+            key=lambda x: x[1],
+            reverse=True
+        ):
+            print(f"{c:3}  {p}")
 
     else:
 

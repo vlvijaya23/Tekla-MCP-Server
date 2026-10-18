@@ -1,0 +1,942 @@
+[
+    {
+        "member": 16,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_16",
+            "profile": "HE220A",
+            "length": 1.0,
+            "start": [
+                9.24002,
+                3.0,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                4.0,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 19,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_19",
+            "profile": "HE220A",
+            "length": 1.0,
+            "start": [
+                9.24002,
+                3.0,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                4.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 32,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_32",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.262,
+            "start": [
+                9.24002,
+                3.0,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.03801
+            ]
+        }
+    },
+    {
+        "member": 53,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_53",
+            "profile": "HE160A",
+            "length": 0.3900000000000001,
+            "start": [
+                2.31,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                2.7,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 56,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_56",
+            "profile": "HE160A",
+            "length": 0.5,
+            "start": [
+                6.93001,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                7.43001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 78,
+        "profile": "L100X100X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_78",
+            "profile": "L100*100*10",
+            "length": 2.6462130677819578,
+            "start": [
+                4.685,
+                6.5,
+                0.0
+            ],
+            "end": [
+                6.86501,
+                5.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 79,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_79",
+            "profile": "L75*75*10",
+            "length": 1.8167704863575915,
+            "start": [
+                9.17501,
+                5.0,
+                0.0
+            ],
+            "end": [
+                8.15001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 80,
+        "profile": "L100X100X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_80",
+            "profile": "L100*100*10",
+            "length": 2.6462187362725706,
+            "start": [
+                4.685,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                6.86501,
+                5.0,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 81,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_81",
+            "profile": "L75*75*10",
+            "length": 1.8167704863575915,
+            "start": [
+                9.17501,
+                5.0,
+                3.30001
+            ],
+            "end": [
+                8.15001,
+                6.50001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 82,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_82",
+            "profile": "UPN140",
+            "length": 0.75,
+            "start": [
+                0.1,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                0.1,
+                7.25001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 83,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_83",
+            "profile": "UPN140",
+            "length": 0.75,
+            "start": [
+                2.7,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                2.7,
+                7.25001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 85,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_85",
+            "profile": "HE160A",
+            "length": 0.75,
+            "start": [
+                4.62001,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                4.62001,
+                7.25001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 89,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_89",
+            "profile": "HE220A",
+            "length": 0.75,
+            "start": [
+                9.24002,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                7.25001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 99,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_99",
+            "profile": "HE220A",
+            "length": 0.4500000000000002,
+            "start": [
+                9.24002,
+                4.0,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                4.45,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 100,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_100",
+            "profile": "HE220A",
+            "length": 0.775,
+            "start": [
+                9.24002,
+                4.0,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                4.0,
+                0.775
+            ]
+        }
+    },
+    {
+        "member": 108,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_108",
+            "profile": "HE160A",
+            "length": 0.4875,
+            "start": [
+                4.62002,
+                9.92001,
+                0.0
+            ],
+            "end": [
+                4.62002,
+                9.92001,
+                0.4875
+            ]
+        }
+    },
+    {
+        "member": 113,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_113",
+            "profile": "HE160A",
+            "length": 0.4875,
+            "start": [
+                4.62002,
+                9.92001,
+                0.4875
+            ],
+            "end": [
+                4.62002,
+                9.92001,
+                0.975
+            ]
+        }
+    },
+    {
+        "member": 124,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_124",
+            "profile": "UPN140",
+            "length": 0.75,
+            "start": [
+                2.31,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                2.31,
+                7.25001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 125,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_125",
+            "profile": "UPN140",
+            "length": 0.7500000000666667,
+            "start": [
+                6.93001,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                6.93,
+                7.25001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 127,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_127",
+            "profile": "UPN140",
+            "length": 0.7500000000666667,
+            "start": [
+                6.93001,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                6.93001,
+                7.25001,
+                3.3
+            ]
+        }
+    },
+    {
+        "member": 129,
+        "profile": "UPN140",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_129",
+            "profile": "UPN140",
+            "length": 0.3900000000000001,
+            "start": [
+                2.31,
+                7.25001,
+                0.0
+            ],
+            "end": [
+                2.7,
+                7.25001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 140,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_140",
+            "profile": "HE220A",
+            "length": 1.0,
+            "start": [
+                9.24002,
+                4.0,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                5.0,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 147,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_147",
+            "profile": "HE160A",
+            "length": 1.0,
+            "start": [
+                7.39201,
+                4.0,
+                0.0
+            ],
+            "end": [
+                6.39201,
+                4.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 151,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_151",
+            "profile": "HE160A",
+            "length": 0.4875,
+            "start": [
+                4.62001,
+                6.50001,
+                0.4875
+            ],
+            "end": [
+                4.62001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 155,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_155",
+            "profile": "HE220A",
+            "length": 0.7500001666626482,
+            "start": [
+                4.62001,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                4.62001,
+                7.25001,
+                -0.000499994
+            ]
+        }
+    },
+    {
+        "member": 156,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_156",
+            "profile": "HE160A",
+            "length": 0.388,
+            "start": [
+                6.93001,
+                6.50001,
+                0.4875
+            ],
+            "end": [
+                6.93001,
+                6.50001,
+                0.0995
+            ]
+        }
+    },
+    {
+        "member": 167,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_167",
+            "profile": "HE220A",
+            "length": 0.75,
+            "start": [
+                9.24002,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                7.25001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 171,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_171",
+            "profile": "HE160A",
+            "length": 0.589999999999999,
+            "start": [
+                7.43001,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                8.02001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 172,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_172",
+            "profile": "HE220A",
+            "length": 0.8000000000000007,
+            "start": [
+                9.24002,
+                7.85,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                8.65,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 177,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_177",
+            "profile": "HE220A",
+            "length": 0.9600000000520842,
+            "start": [
+                4.62001,
+                7.25001,
+                -0.000499994
+            ],
+            "end": [
+                4.62002,
+                8.21001,
+                -0.000499994
+            ]
+        }
+    },
+    {
+        "member": 187,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_187",
+            "profile": "L75*75*10",
+            "length": 1.816770486357591,
+            "start": [
+                6.99501,
+                5.0,
+                3.30001
+            ],
+            "end": [
+                8.02001,
+                6.50001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 190,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_190",
+            "profile": "L75*75*10",
+            "length": 1.816776128255762,
+            "start": [
+                6.995,
+                5.0,
+                0.0
+            ],
+            "end": [
+                8.02001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 191,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_191",
+            "profile": "HE160A",
+            "length": 1.0,
+            "start": [
+                6.39201,
+                3.0,
+                0.0
+            ],
+            "end": [
+                6.39201,
+                4.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 194,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_194",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.3,
+            "start": [
+                9.24002,
+                0.2,
+                3.3
+            ],
+            "end": [
+                9.24002,
+                0.5,
+                3.3
+            ]
+        }
+    },
+    {
+        "member": 196,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_196",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.35000000000000003,
+            "start": [
+                9.24002,
+                0.2,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                0.55,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 208,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_208",
+            "profile": "HE160A",
+            "length": 0.27999000017857756,
+            "start": [
+                8.15001,
+                6.50001,
+                0.0
+            ],
+            "end": [
+                8.43,
+                6.5,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 214,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_214",
+            "profile": "HE160A",
+            "length": 0.8100200000617266,
+            "start": [
+                8.43,
+                6.5,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 216,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_216",
+            "profile": "HE220A",
+            "length": 0.4499999999999993,
+            "start": [
+                9.24002,
+                7.4,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                7.85,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 217,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_217",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.4379999999999997,
+            "start": [
+                6.39201,
+                3.0,
+                0.0
+            ],
+            "end": [
+                6.83001,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 219,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_219",
+            "profile": "HE160A",
+            "length": 1.0,
+            "start": [
+                7.39201,
+                3.0,
+                0.0
+            ],
+            "end": [
+                7.39201,
+                4.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 220,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_220",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.26199999999999957,
+            "start": [
+                7.13001,
+                3.0,
+                0.0
+            ],
+            "end": [
+                7.39201,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 223,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_223",
+            "profile": "HE220A",
+            "length": 0.5499999999999998,
+            "start": [
+                9.24002,
+                4.45,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                5.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 224,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_224",
+            "profile": "HE220A",
+            "length": 0.751,
+            "start": [
+                9.24002,
+                4.0,
+                0.775
+            ],
+            "end": [
+                9.24002,
+                4.0,
+                1.526
+            ]
+        }
+    },
+    {
+        "member": 225,
+        "profile": "100X6.3SHS",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_225",
+            "profile": "SHS100*100*6.3",
+            "length": 0.4500000000000002,
+            "start": [
+                9.24002,
+                4.0,
+                0.775
+            ],
+            "end": [
+                9.24002,
+                4.45,
+                0.775
+            ]
+        }
+    },
+    {
+        "member": 226,
+        "profile": "HE160A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_226",
+            "profile": "HE160A",
+            "length": 0.775,
+            "start": [
+                9.24002,
+                4.45,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                4.45,
+                0.775
+            ]
+        }
+    },
+    {
+        "member": 231,
+        "profile": "HE220A",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_231",
+            "profile": "HE220A",
+            "length": 0.26201,
+            "start": [
+                9.24002,
+                3.0,
+                0.26201
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 233,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_233",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.2999999999999998,
+            "start": [
+                9.24002,
+                2.7,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.30001
+            ]
+        }
+    }
+]
