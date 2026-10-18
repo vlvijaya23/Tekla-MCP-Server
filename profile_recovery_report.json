@@ -4,30 +4,6 @@
         "recommendation": "REVIEW_REQUIRED"
     },
     {
-        "profile": "L100X100X10",
-        "recommendation": "L100*100*10"
-    },
-    {
-        "profile": "L75X75X10",
-        "recommendation": "L75*75*10"
-    },
-    {
-        "profile": "L100X100X10",
-        "recommendation": "L100*100*10"
-    },
-    {
-        "profile": "L75X75X10",
-        "recommendation": "L75*75*10"
-    },
-    {
-        "profile": "L75X75X10",
-        "recommendation": "L75*75*10"
-    },
-    {
-        "profile": "L75X75X10",
-        "recommendation": "L75*75*10"
-    },
-    {
         "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
         "recommendation": "REVIEW_REQUIRED"
     },

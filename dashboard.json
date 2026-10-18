@@ -1,8 +1,7 @@
 {
-    "total_members": 157,
-    "created": 109,
-    "failed": 12,
+    "total": 157,
+    "created": 115,
+    "failed": 6,
     "skipped": 36,
-    "recovery_rate": 90.08,
-    "status": "SUCCESS"
+    "recovery_rate": 95.04
 }
