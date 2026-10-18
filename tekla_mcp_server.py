@@ -7,6 +7,12 @@ import sys
 import pythonnet
 import json
 
+sys.path.append(
+    r"C:\tekla-mcp\agents_runtime"
+)
+
+from member_ai import process_member
+
 from mcp.server.fastmcp import FastMCP
 
 # ----------------------------------------------------
@@ -294,9 +300,19 @@ def create_beam(
         )
 
         beam.Profile.ProfileString = profile
-
-        beam.Material.MaterialString = "S355"
-
+        member_ai = process_member(
+            member_id=0,
+            profile=profile,
+            start_x=start_x,
+            start_y=start_y,
+            start_z=start_z,
+            end_x=end_x,
+            end_y=end_y,
+            end_z=end_z
+        )
+        beam.Material.MaterialString = (
+            member_ai["classification"]["material"]
+        )
         phase = phase.upper().strip()
 
         if phase in ["_COLUMN", "COLUMN"]:
