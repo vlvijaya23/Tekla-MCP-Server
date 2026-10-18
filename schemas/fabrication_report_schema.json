@@ -1,0 +1,21 @@
+{
+    "project_name": "",
+    "model_name": "",
+    "date": "",
+    "members": {
+        "total": 0,
+        "columns": 0,
+        "beams": 0,
+        "braces": 0
+    },
+    "profiles": {
+        "resolved": 0,
+        "unresolved": 0
+    },
+    "fabrication": {
+        "numbering_complete": false,
+        "connections_complete": false,
+        "drawings_complete": false
+    },
+    "status": ""
+}
