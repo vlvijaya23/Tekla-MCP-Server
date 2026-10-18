@@ -565,18 +565,6 @@ if __name__ == "__main__":
         print()
 
         print("Create Test Beam: SKIPPED")
-        print(
-            create_beam(
-                profile="HW150*150*7*10",
-                start_x=0,
-                start_y=0,
-                start_z=0,
-                end_x=0,
-                end_y=0,
-                end_z=0,
-                name="TEST_BEAM"
-            )
-        )
 
         print()
 
