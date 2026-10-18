@@ -1,0 +1,242 @@
+[
+    {
+        "member": 32,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN_STAAD_32",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.262,
+            "start": [
+                9.24002,
+                3.0,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.03801
+            ]
+        }
+    },
+    {
+        "member": 78,
+        "profile": "L100X100X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_78",
+            "profile": "L100*100*10",
+            "length": 2.6462130677819578,
+            "start": [
+                4.685,
+                6.5,
+                0.0
+            ],
+            "end": [
+                6.86501,
+                5.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 79,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_79",
+            "profile": "L75*75*10",
+            "length": 1.8167704863575915,
+            "start": [
+                9.17501,
+                5.0,
+                0.0
+            ],
+            "end": [
+                8.15001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 80,
+        "profile": "L100X100X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_80",
+            "profile": "L100*100*10",
+            "length": 2.6462187362725706,
+            "start": [
+                4.685,
+                6.50001,
+                3.30001
+            ],
+            "end": [
+                6.86501,
+                5.0,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 81,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_81",
+            "profile": "L75*75*10",
+            "length": 1.8167704863575915,
+            "start": [
+                9.17501,
+                5.0,
+                3.30001
+            ],
+            "end": [
+                8.15001,
+                6.50001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 187,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_187",
+            "profile": "L75*75*10",
+            "length": 1.816770486357591,
+            "start": [
+                6.99501,
+                5.0,
+                3.30001
+            ],
+            "end": [
+                8.02001,
+                6.50001,
+                3.30001
+            ]
+        }
+    },
+    {
+        "member": 190,
+        "profile": "L75X75X10",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_190",
+            "profile": "L75*75*10",
+            "length": 1.816776128255762,
+            "start": [
+                6.995,
+                5.0,
+                0.0
+            ],
+            "end": [
+                8.02001,
+                6.50001,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 194,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_194",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.3,
+            "start": [
+                9.24002,
+                0.2,
+                3.3
+            ],
+            "end": [
+                9.24002,
+                0.5,
+                3.3
+            ]
+        }
+    },
+    {
+        "member": 196,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_196",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.35000000000000003,
+            "start": [
+                9.24002,
+                0.2,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                0.55,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 217,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_217",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.4379999999999997,
+            "start": [
+                6.39201,
+                3.0,
+                0.0
+            ],
+            "end": [
+                6.83001,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 220,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_220",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.26199999999999957,
+            "start": [
+                7.13001,
+                3.0,
+                0.0
+            ],
+            "end": [
+                7.39201,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 233,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM_STAAD_233",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.2999999999999998,
+            "start": [
+                9.24002,
+                2.7,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.30001
+            ]
+        }
+    }
+]

@@ -282,15 +282,15 @@ def create_beam(
         beam = Beam()
 
         beam.StartPoint = Point(
-            start_x,
-            start_y,
-            start_z
+            start_x * 1000.0,
+            start_z * 1000.0,
+            start_y * 1000.0
         )
 
         beam.EndPoint = Point(
-            end_x,
-            end_y,
-            end_z
+            end_x * 1000.0,
+            end_z * 1000.0,
+            end_y * 1000.0
         )
 
         beam.Profile.ProfileString = profile
@@ -374,6 +374,12 @@ def create_beam(
 
             model.CommitChanges()
 
+            print(
+                f"SUCCESS | {name} | "
+                f"({start_x:.3f}, {start_y:.3f}, {start_z:.3f}) -> "
+                f"({end_x:.3f}, {end_y:.3f}, {end_z:.3f})"
+            )
+
             return {
                 "status": "success",
                 "name": beam.Name,
@@ -410,7 +416,7 @@ def create_beam(
 
 @mcp.tool()
 def import_staad_json(
-    json_file: str = r"C:\TeklaAssistant\staad_payload.json",
+    json_file: str = r"C:\TeklaAssistant\data\staad_payload.json",
     limit: int = 10
 ):
 
@@ -558,7 +564,7 @@ if __name__ == "__main__":
 
         print()
 
-        print("Create Test Beam:")
+        print("Create Test Beam: SKIPPED")
         print(
             create_beam(
                 profile="HW150*150*7*10",
@@ -567,7 +573,7 @@ if __name__ == "__main__":
                 start_z=0,
                 end_x=0,
                 end_y=0,
-                end_z=5000,
+                end_z=0,
                 name="TEST_BEAM"
             )
         )
@@ -582,17 +588,19 @@ if __name__ == "__main__":
 
         print(result)
 
-        with open(
-            "failed_members.json",
-            "w",
-            encoding="utf-8"
-        ) as f:
+        if "errors" in result:
 
-            json.dump(
-                result["errors"],
-                f,
-                indent=4
-            )
+            with open(
+                "failed_members.json",
+                "w",
+                encoding="utf-8"
+            ) as f:
+
+                json.dump(
+                    result["errors"],
+                    f,
+                    indent=4
+                )
 
         profile_count = {}
 
