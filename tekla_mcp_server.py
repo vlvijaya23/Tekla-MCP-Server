@@ -368,6 +368,7 @@ def create_beam(
                 "name": beam.Name
             }
 
+
         success = beam.Insert()
 
         if success:
