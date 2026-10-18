@@ -3,27 +3,29 @@ import os
 
 BASE_DIR = r"C:\tekla-mcp\agents_runtime"
 
-GEOMETRY_AGENT = os.path.join(
-    BASE_DIR,
-    "geometry_agent.py"
-)
-
-PROFILE_AGENT = os.path.join(
-    BASE_DIR,
-    "profile_agent.py"
-)
+AGENTS = [
+    ("GEOMETRY AGENT", "geometry_agent.py"),
+    ("PROFILE AGENT", "profile_agent.py"),
+    ("DASHBOARD AGENT", "dashboard_agent.py"),
+    ("FABRICATION AGENT", "fabrication_agent.py")
+]
 
 
-def run_agent(name, path):
+def run_agent(title, script):
 
     print()
     print("=" * 50)
-    print(f"RUNNING {name}")
+    print(title)
     print("=" * 50)
 
     subprocess.run(
-        ["python", path],
-        check=False
+        [
+            "python",
+            os.path.join(
+                BASE_DIR,
+                script
+            )
+        ]
     )
 
 
@@ -33,19 +35,16 @@ def main():
     print("TEKLA MCP ORCHESTRATOR")
     print("=" * 50)
 
-    run_agent(
-        "GEOMETRY AGENT",
-        GEOMETRY_AGENT
-    )
+    for title, script in AGENTS:
 
-    run_agent(
-        "PROFILE AGENT",
-        PROFILE_AGENT
-    )
+        run_agent(
+            title,
+            script
+        )
 
     print()
     print("=" * 50)
-    print("WORKFLOW COMPLETE")
+    print("MCP WORKFLOW COMPLETE")
     print("=" * 50)
 
 
