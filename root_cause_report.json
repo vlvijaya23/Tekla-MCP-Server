@@ -1,0 +1,9 @@
+{
+    "total_failures": 12,
+    "profiles": {
+        "TUBE TH 0.012 WT 0.22 DT 0.21": 4,
+        "L100X100X10": 2,
+        "L75X75X10": 4,
+        "TUBE TH 0.01 WT 0.16 DT 0.152": 2
+    }
+}
