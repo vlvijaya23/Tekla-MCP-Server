@@ -81,7 +81,8 @@ clr.AddReference("Tekla.Structures")
 from Tekla.Structures.Model import (
     Model,
     ModelObject,
-    Beam
+    Beam,
+    Position
 )
 
 from Tekla.Structures.Geometry3d import (
@@ -324,13 +325,23 @@ def create_beam(
 
         beam.Name = member_ai["name"]
 
+        beam.Position.Plane = (
+            Position.PlaneEnum.MIDDLE
+        )
+
+        beam.Position.Depth = (
+            Position.DepthEnum.MIDDLE
+        )
+
+        beam.Position.Rotation = (
+            Position.RotationEnum.FRONT
+        )
+
         dx = abs(end_x - start_x)
         dy = abs(end_y - start_y)
         dz = abs(end_z - start_z)
 
         horizontal = max(dx, dy)
-
-        beam.Name = member_ai["name"]
 
         length = (
             (end_x - start_x) ** 2 +
