@@ -313,43 +313,16 @@ def create_beam(
         beam.Material.MaterialString = (
             member_ai["classification"]["material"]
         )
-        phase = phase.upper().strip()
 
-        if phase in ["_COLUMN", "COLUMN"]:
+        beam.Class = (
+            member_ai["classification"]["class"]
+        )
 
-            beam.Class = "3"
+        phase = (
+            member_ai["classification"]["phase"]
+        )
 
-        elif phase in ["_TRAYCOLUMN", "TRAYCOLUMN"]:
-
-            beam.Class = "8"
-
-        elif phase == "PRIMARY_STEEL":
-
-            beam.Class = "3"
-
-        elif phase == "SECONDARY_STEEL":
-
-            beam.Class = "8"
-
-        elif phase == "BRACING":
-
-            beam.Class = "5"
-
-        elif phase == "PIPE_SUPPORT":
-
-            beam.Class = "7"
-
-        elif phase == "PLATE_GIRDER":
-
-            beam.Class = "6"
-
-        elif phase == "MONORAIL":
-
-            beam.Class = "9"
-
-        else:
-
-            beam.Class = "4"
+        beam.Name = member_ai["name"]
 
         dx = abs(end_x - start_x)
         dy = abs(end_y - start_y)
@@ -357,17 +330,7 @@ def create_beam(
 
         horizontal = max(dx, dy)
 
-        if dz > horizontal:
-
-            beam.Name = f"COLUMN_{name}"
-
-        elif horizontal > 0 and dz < (horizontal * 0.20):
-
-            beam.Name = f"BEAM_{name}"
-
-        else:
-
-            beam.Name = f"BRACE_{name}"
+        beam.Name = member_ai["name"]
 
         length = (
             (end_x - start_x) ** 2 +
