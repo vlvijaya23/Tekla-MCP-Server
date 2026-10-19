@@ -79,18 +79,6 @@
     {
         "profile": "HE220A",
         "members": [
-            19,
-            99,
-            223,
-            25
-        ],
-        "start_node": 18,
-        "end_node": 8,
-        "segment_count": 4
-    },
-    {
-        "profile": "HE220A",
-        "members": [
             179,
             19,
             99,

@@ -56,15 +56,62 @@ report = []
 
 for chain in chains:
 
-    report.append({
-        "profile": chain[0]["PROFILE"],
-        "members": [m["MEMBER_ID"] for m in chain],
-        "start_node": chain[0]["START_NODE"],
-        "end_node": chain[-1]["END_NODE"],
-        "segment_count": len(chain)
-    })
+    report.append(
+        {
+            "profile": chain[0]["PROFILE"],
+            "members": [
+                m["MEMBER_ID"]
+                for m in chain
+            ],
+            "start_node":
+                chain[0]["START_NODE"],
+            "end_node":
+                chain[-1]["END_NODE"],
+            "segment_count":
+                len(chain)
+        }
+    )
+
+#
+# Remove subset chains
+#
+
+filtered = []
+
+for candidate in report:
+
+    members = set(
+        candidate["members"]
+    )
+
+    is_subset = False
+
+    for other in report:
+
+        if candidate == other:
+            continue
+
+        other_members = set(
+            other["members"]
+        )
+
+        if members.issubset(
+            other_members
+        ):
+
+            is_subset = True
+            break
+
+    if not is_subset:
+
+        filtered.append(
+            candidate
+        )
+
+report = filtered
 
 with open(OUTPUT, "w") as f:
+
     json.dump(
         report,
         f,
@@ -75,4 +122,16 @@ print()
 print("COLUMN MERGE FILE CREATED")
 print(OUTPUT)
 print()
-print(f"Candidates: {len(report)}")
+print(
+    f"Candidates: {len(report)}"
+)
+
+print()
+print("FINAL CHAINS")
+print("=" * 50)
+
+for item in report:
+
+    print(
+        item["members"]
+    )
