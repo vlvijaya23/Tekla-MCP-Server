@@ -1,0 +1,104 @@
+[
+    {
+        "profile": "HE220A",
+        "members": [
+            1,
+            14,
+            20
+        ],
+        "start_node": 3,
+        "end_node": 9,
+        "segment_count": 3
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            2,
+            193,
+            15,
+            21
+        ],
+        "start_node": 6,
+        "end_node": 12,
+        "segment_count": 4
+    },
+    {
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "members": [
+            3,
+            194
+        ],
+        "start_node": 4,
+        "end_node": 91,
+        "segment_count": 2
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            4,
+            17,
+            23
+        ],
+        "start_node": 1,
+        "end_node": 7,
+        "segment_count": 3
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            5,
+            195,
+            18,
+            24
+        ],
+        "start_node": 5,
+        "end_node": 11,
+        "segment_count": 4
+    },
+    {
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "members": [
+            6,
+            196
+        ],
+        "start_node": 2,
+        "end_node": 92,
+        "segment_count": 2
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            16,
+            140,
+            22
+        ],
+        "start_node": 15,
+        "end_node": 10,
+        "segment_count": 3
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            19,
+            99,
+            223,
+            25
+        ],
+        "start_node": 18,
+        "end_node": 8,
+        "segment_count": 4
+    },
+    {
+        "profile": "HE220A",
+        "members": [
+            179,
+            19,
+            99,
+            223,
+            25
+        ],
+        "start_node": 92,
+        "end_node": 8,
+        "segment_count": 5
+    }
+]

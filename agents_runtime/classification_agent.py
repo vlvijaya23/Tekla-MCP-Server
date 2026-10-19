@@ -20,7 +20,7 @@ def classify_member(
     dy = abs(end_y - start_y)
     dz = abs(end_z - start_z)
 
-    horizontal = max(dx, dy)
+    horizontal = max(dx, dz)
 
     length = math.sqrt(
         dx ** 2 +
@@ -41,7 +41,7 @@ def classify_member(
     # COLUMN
     #
 
-    if dz > horizontal:
+    if dy > horizontal:
 
         result["member_type"] = "COLUMN"
         result["class"] = "3"
