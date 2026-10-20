@@ -4,7 +4,7 @@
         "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
         "result": {
             "status": "insert_failed",
-            "name": "BR-0000",
+            "name": "BEAM",
             "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
             "length": 0.262,
             "start": [
@@ -24,7 +24,7 @@
         "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
         "result": {
             "status": "insert_failed",
-            "name": "COL-0000",
+            "name": "COLUMN",
             "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
             "length": 0.3,
             "start": [
@@ -44,7 +44,7 @@
         "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
         "result": {
             "status": "insert_failed",
-            "name": "COL-0000",
+            "name": "COLUMN",
             "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
             "length": 0.35000000000000003,
             "start": [
@@ -64,7 +64,7 @@
         "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
         "result": {
             "status": "insert_failed",
-            "name": "BM-0000",
+            "name": "BEAM",
             "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
             "length": 0.4379999999999997,
             "start": [
@@ -84,7 +84,7 @@
         "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
         "result": {
             "status": "insert_failed",
-            "name": "BM-0000",
+            "name": "BEAM",
             "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
             "length": 0.26199999999999957,
             "start": [
@@ -104,7 +104,7 @@
         "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
         "result": {
             "status": "insert_failed",
-            "name": "COL-0000",
+            "name": "COLUMN",
             "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
             "length": 0.2999999999999998,
             "start": [

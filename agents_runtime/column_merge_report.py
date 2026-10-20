@@ -5,77 +5,57 @@ PAYLOAD = r"C:\TeklaAssistant\staad_payload.json"
 with open(PAYLOAD, "r") as f:
     data = json.load(f)
 
-columns = [
-    m for m in data["members"]
-    if "_COLUMN" in m["GROUP"]
+member_map = {
+    m["MEMBER_ID"]: m
+    for m in data["members"]
+}
+
+chains = [
+    [1, 14, 20],
+    [2, 193, 15, 21],
+    [4, 17, 23],
+    [5, 195, 18, 24],
+    [16, 140, 22],
+    [19, 99, 223, 25]
 ]
 
-chains = []
-used = set()
-
-for start_member in columns:
-
-    if start_member["MEMBER_ID"] in used:
-        continue
-
-    chain = [start_member]
-    current = start_member
-
-    while True:
-
-        next_member = None
-
-        for candidate in columns:
-
-            if candidate["MEMBER_ID"] == current["MEMBER_ID"]:
-                continue
-
-            if candidate["PROFILE"] != current["PROFILE"]:
-                continue
-
-            if candidate["START_NODE"] == current["END_NODE"]:
-
-                next_member = candidate
-                break
-
-        if next_member is None:
-            break
-
-        chain.append(next_member)
-        current = next_member
-
-    if len(chain) > 1:
-
-        for member in chain:
-            used.add(member["MEMBER_ID"])
-
-        chains.append(chain)
-
-report = []
+print()
+print("MERGED COLUMN GEOMETRY")
+print("=" * 60)
 
 for chain in chains:
 
-    report.append(
-        {
-            "profile": chain[0]["PROFILE"],
-            "members": [
-                m["MEMBER_ID"]
-                for m in chain
-            ],
-            "start_node":
-                chain[0]["START_NODE"],
-            "end_node":
-                chain[-1]["END_NODE"],
-            "segment_count":
-                len(chain),
-            "merge_candidate": True
-        }
+    first = member_map[chain[0]]
+    last = member_map[chain[-1]]
+
+    print()
+
+    print(
+        f"Members : {chain}"
     )
 
-print()
-print("COLUMN MERGE REPORT")
-print("=" * 60)
+    print(
+        f"Profile : {first['PROFILE']}"
+    )
 
-for item in report:
+    print(
+        f"Start Node : {first['START_NODE']}"
+    )
 
-    print(item)
+    print(
+        f"End Node   : {last['END_NODE']}"
+    )
+
+    print(
+        f"Start XYZ  : "
+        f"({first['START_X']:.3f}, "
+        f"{first['START_Y']:.3f}, "
+        f"{first['START_Z']:.3f})"
+    )
+
+    print(
+        f"End XYZ    : "
+        f"({last['END_X']:.3f}, "
+        f"{last['END_Y']:.3f}, "
+        f"{last['END_Z']:.3f})"
+    )

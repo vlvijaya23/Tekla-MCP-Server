@@ -6,6 +6,7 @@ import os
 import sys
 import pythonnet
 import json
+import math
 
 sys.path.append(
     r"C:\tekla-mcp\agents_runtime"
@@ -115,22 +116,185 @@ def get_model():
 # PROFILE MAPPING
 # ----------------------------------------------------
 
-PROFILE_MAP = {
-    "HE220A": "HE220A",
-    "HE160A": "HE160A",
-    "UPN140": "UPN140",
-    "L75X75X10": "L75*75*10",
-    "L100X100X10": "L100*100*10",
-    "100X6.3SHS": "SHS100*100*6.3"
-}
+from core.profile_mapper import (
+    map_profile,
+    get_all_mappings,
+    profile_exists,
+    add_profile_mapping
+)
 
+def build_merged_members(
+    members
+):
 
-def map_profile(profile):
-
-    return PROFILE_MAP.get(
-        profile,
-        profile
+    merge_file = (
+        r"C:\tekla-mcp\column_merge_candidates.json"
     )
+
+    with open(
+        merge_file,
+        "r",
+        encoding="utf-8"
+    ) as f:
+
+        chains = json.load(f)
+
+    member_lookup = {
+        m["MEMBER_ID"]: m
+        for m in members
+    }
+
+    merged_members = []
+    merged_ids = set()
+
+    for chain in chains:
+
+        if chain["profile"] != "HE220A":
+            continue
+
+        first = member_lookup[
+            chain["members"][0]
+        ]
+
+        last = member_lookup[
+            chain["members"][-1]
+        ]
+
+        merged = dict(first)
+
+        merged["END_X"] = last["END_X"]
+        merged["END_Y"] = last["END_Y"]
+        merged["END_Z"] = last["END_Z"]
+
+        merged["MEMBER_ID"] = (
+            f"MERGED_{chain['members'][0]}"
+        )
+
+        merged_members.append(
+            merged
+        )
+
+        merged_ids.update(
+            chain["members"]
+        )
+
+    for m in members:
+
+        if m["MEMBER_ID"] not in merged_ids:
+
+            merged_members.append(m)
+
+    return merged_members
+
+def split_long_member(
+    member,
+    max_length=12.0
+):
+
+    dx = (
+        float(member["END_X"])
+        - float(member["START_X"])
+    )
+
+    dy = (
+        float(member["END_Y"])
+        - float(member["START_Y"])
+    )
+
+    dz = (
+        float(member["END_Z"])
+        - float(member["START_Z"])
+    )
+
+    length = (
+        dx ** 2 +
+        dy ** 2 +
+        dz ** 2
+    ) ** 0.5
+
+    if length <= max_length:
+
+        return [member]
+
+    count = math.ceil(
+        length / max_length
+    )
+
+    segments = []
+
+    for i in range(count):
+
+        start_ratio = (
+            i * max_length
+        ) / length
+
+        end_ratio = min(
+            (
+                (i + 1)
+                * max_length
+            ) / length,
+            1.0
+        )
+
+        segment = dict(member)
+
+        segment["START_X"] = (
+            float(member["START_X"])
+            + dx * start_ratio
+        )
+
+        segment["START_Y"] = (
+            float(member["START_Y"])
+            + dy * start_ratio
+        )
+
+        segment["START_Z"] = (
+            float(member["START_Z"])
+            + dz * start_ratio
+        )
+
+        segment["END_X"] = (
+            float(member["START_X"])
+            + dx * end_ratio
+        )
+
+        segment["END_Y"] = (
+            float(member["START_Y"])
+            + dy * end_ratio
+        )
+
+        segment["END_Z"] = (
+            float(member["START_Z"])
+            + dz * end_ratio
+        )
+
+        segment["MEMBER_ID"] = (
+            f"{member['MEMBER_ID']}_S{i+1}"
+        )
+
+        segments.append(
+            segment
+        )
+
+    return segments
+
+
+def apply_length_limit(
+    members
+):
+
+    final_members = []
+
+    for member in members:
+
+        final_members.extend(
+            split_long_member(
+                member,
+                12.0
+            )
+        )
+
+    return final_members
 
 # ----------------------------------------------------
 # MCP TOOLS
@@ -311,6 +475,7 @@ def create_beam(
             end_y=end_y,
             end_z=end_z
         )
+        
         beam.Material.MaterialString = (
             member_ai["classification"]["material"]
         )
@@ -323,19 +488,55 @@ def create_beam(
             member_ai["classification"]["phase"]
         )
 
-        beam.Name = member_ai["name"]
+        member_type = (
+            member_ai["classification"]["member_type"]
+        )
+
+        dx = abs(end_x - start_x)
+        dy = abs(end_y - start_y)
+        dz = abs(end_z - start_z)
+
+        horizontal = max(dx, dy)
+
+        #
+        # Naming
+        #
+
+        if member_type == "COLUMN":
+
+            beam.Name = "COLUMN"
+
+        else:
+
+            beam.Name = "BEAM"
+
+        #
+        # Position
+        #
 
         beam.Position.Plane = (
             Position.PlaneEnum.MIDDLE
         )
 
-        beam.Position.Depth = (
-            Position.DepthEnum.MIDDLE
-        )
+        if member_type == "COLUMN":
 
-        beam.Position.Rotation = (
-            Position.RotationEnum.FRONT
-        )
+            beam.Position.Rotation = (
+                Position.RotationEnum.FRONT
+            )
+
+            beam.Position.Depth = (
+                Position.DepthEnum.MIDDLE
+            )
+
+        else:
+
+            beam.Position.Rotation = (
+                Position.RotationEnum.TOP
+            )
+
+            beam.Position.Depth = (
+                Position.DepthEnum.BEHIND
+            )
 
         dx = abs(end_x - start_x)
         dy = abs(end_y - start_y)
@@ -357,7 +558,6 @@ def create_beam(
                 "profile": profile,
                 "name": beam.Name
             }
-
 
         success = beam.Insert()
 
@@ -426,7 +626,16 @@ def import_staad_json(
             []
         )
 
+        members = build_merged_members(
+            members
+        )
+
+        members = apply_length_limit(
+            members
+        )
+
         if limit > 0:
+
             members = members[:limit]
 
         created = 0
