@@ -608,7 +608,8 @@ def create_beam(
 @mcp.tool()
 def import_staad_json(
     json_file: str = r"C:\TeklaAssistant\data\staad_payload.json",
-    limit: int = 10
+    limit: int = 10,
+    progress_callback=None
 ):
 
     try:
@@ -643,7 +644,14 @@ def import_staad_json(
         skipped = 0
         errors = []
 
-        for member in members:
+        total_members = len(
+            members
+        )
+
+        for index, member in enumerate(
+            members,
+            start=1
+        ):
 
             try:
 
@@ -685,6 +693,19 @@ def import_staad_json(
                         }
                     )
 
+                if progress_callback:
+
+                    progress = int(
+                        (
+                            index
+                            / total_members
+                        ) * 100
+                    )
+
+                    progress_callback(
+                        progress
+                    )
+
             except Exception as ex:
 
                 failed += 1
@@ -702,6 +723,19 @@ def import_staad_json(
                         "error": str(ex)
                     }
                 )
+
+                if progress_callback:
+
+                    progress = int(
+                        (
+                            index
+                            / total_members
+                        ) * 100
+                    )
+
+                    progress_callback(
+                        progress
+                    )
 
         with open(
             r"C:\tekla-mcp\failed_members.json",

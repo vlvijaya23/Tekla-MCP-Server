@@ -18,12 +18,14 @@ class TeklaBridge:
 
     def import_payload(
         self,
-        payload_file
+        payload_file,
+        progress_callback=None
     ):
 
         result = import_staad_json(
             json_file=payload_file,
-            limit=0
+            limit=0,
+            progress_callback=progress_callback
         )
 
         return result

@@ -1,4 +1,7 @@
 import tkinter as tk
+import threading
+
+from tkinter import ttk
 from tkinter import filedialog
 
 from product.ui.import_report_window import (
@@ -9,16 +12,20 @@ from product.controllers.analysis_controller import (
     AnalysisController
 )
 
-from product.controllers.profile_intelligence import (
-    ProfileIntelligence
-)
-
 from product.ui.analysis_window import (
     AnalysisWindow
 )
 
 from product.controllers.tekla_import_controller import (
     TeklaImportController
+)
+
+from product.version import (
+    APP_VERSION
+)
+
+from product.analytics import (
+    log_event
 )
 
 class MainWindow:
@@ -38,7 +45,7 @@ class MainWindow:
         self.last_result = None
 
         root.title(
-            "Tekla AI Modeler"
+            f"Tekla AI Modeler v{APP_VERSION}"
         )
 
         root.geometry(
@@ -55,8 +62,13 @@ class MainWindow:
 
         title = tk.Label(
             root,
-            text="TEKLA AI MODELER",
-            font=("Arial", 18, "bold", "underline")
+            text=f"TEKLA AI MODELER v{APP_VERSION}",
+            font=(
+                "Arial",
+                18,
+                "bold",
+                "underline"
+            )
         )
 
         title.pack(
@@ -215,6 +227,10 @@ class MainWindow:
             "Analyzing STAAD model..."
         )
 
+        log_event(
+            "ANALYZE_MODEL"
+        )
+
         result = (
             self.analysis_controller
             .analyze_staad(
@@ -232,9 +248,13 @@ class MainWindow:
             result
         )
 
-    def create_model(self):
+    def create_model(
+        self
+    ):
 
-        file_path = self.staad_file.get()
+        file_path = (
+            self.staad_file.get()
+        )
 
         if not file_path:
 
@@ -244,193 +264,178 @@ class MainWindow:
 
             return
 
+        self.progress_window = (
+            tk.Toplevel(
+                self.root
+            )
+        )
+
+        self.progress_window.title(
+            "Processing"
+        )
+
+        self.progress_window.geometry(
+            "350x120"
+        )
+
+        self.progress_window.resizable(
+            False,
+            False
+        )
+
+        self.progress_window.transient(
+            self.root
+        )
+
+        self.progress_window.grab_set()
+
+        tk.Label(
+            self.progress_window,
+            text=(
+                "Creating Tekla Model...\n\n"
+                "Please wait."
+            ),
+            font=(
+                "Arial",
+                10,
+                "bold"
+            )
+        ).pack(
+            pady=10
+        )
+
+        self.progress = (
+            ttk.Progressbar(
+                self.progress_window,
+                mode="determinate",
+                length=250,
+                maximum=100
+            )
+        )
+
+        self.progress.pack(
+            pady=10
+        )
+
+        self.progress_label = tk.Label(
+            self.progress_window,
+            text="0%"
+        )
+
+        self.progress_label.pack(
+            pady=5
+        )
+
+        self.progress["value"] = 0
+
+        self.status.set(
+            "Creating Tekla Model..."
+        )
+
+        threading.Thread(
+            target=self.run_import,
+            args=(file_path,),
+            daemon=True
+        ).start()
+
+    def run_import(
+        self,
+        file_path
+    ):
+
         try:
+
+            log_event(
+                "CREATE_MODEL"
+            )
 
             result = (
                 self.tekla_import_controller
                 .create_model(
-                    file_path
+                    file_path,
+                    self.update_progress
                 )
             )
 
-            tekla = result["tekla"]
-
-            self.status.set(
-                f"Created {tekla['created']} | "
-                f"Failed {tekla['failed']} | "
-                f"Skipped {tekla['skipped']}"
-            )
-
-            ImportReportWindow(
-                result
+            self.root.after(
+                0,
+                lambda:
+                self.import_completed(
+                    result
+                )
             )
 
         except Exception as ex:
 
-            self.status.set(
-                f"Error : {str(ex)}"
+            self.root.after(
+                0,
+                lambda:
+                self.import_failed(
+                    str(ex)
+                )
             )
 
-    def ask_copilot(
-        self
+    def import_completed(
+        self,
+        result
     ):
 
-        question = (
-            self.copilot_question.get()
-            .strip()
-            .lower()
+        tekla = result[
+            "tekla"
+        ]
+
+        self.status.set(
+            f"Created {tekla['created']} | "
+            f"Failed {tekla['failed']} | "
+            f"Skipped {tekla['skipped']}"
         )
 
-        if not question:
+        self.progress.configure(
+            value=100
+        )
 
-            return
+        self.progress_label.config(
+            text="100%"
+        )
 
-        if not self.last_result:
+        self.progress_window.destroy()
 
-            self.status.set(
-                "Analyze a model first"
+        ImportReportWindow(
+            result
+        )
+
+    def import_failed(
+        self,
+        error
+    ):
+
+        self.progress.configure(
+            value=0
+        )
+
+        self.progress_window.destroy()
+
+        self.status.set(
+            f"Error : {error}"
+        )
+
+    def update_progress(
+        self,
+        value
+    ):
+
+        self.root.after(
+            0,
+            lambda:
+            self.progress.configure(
+                value=value
             )
+        )
 
-            return
-
-        result = self.last_result
-
-        if (
-            "unmapped" in question
-            or
-            "review" in question
-            or
-            "learning" in question
-            or
-            "need learning" in question
-            or
-            "profiles needing learning" in question
-            or
-            "review required" in question
-        ):
-
-            intelligence = (
-                ProfileIntelligence()
+        self.root.after(
+            0,
+            lambda:
+            self.progress_label.config(
+                text=f"{value}%"
             )
-
-            unmapped = []
-
-            for profile in result.get(
-                "profiles",
-                []
-            ):
-
-                mapping = (
-                    intelligence.infer_mapping(
-                        profile
-                    )
-                )
-
-                if (
-                    mapping["tekla"]
-                    == "REVIEW_REQUIRED"
-                ):
-
-                    unmapped.append(
-                        profile
-                    )
-
-            if unmapped:
-
-                self.status.set(
-                    f"Unmapped Profiles : {len(unmapped)}"
-                )
-
-                popup = tk.Toplevel()
-
-                popup.title(
-                    "Copilot Result"
-                )
-
-                popup.geometry(
-                    "700x300"
-                )
-
-                text = tk.Text(
-                    popup
-                )
-
-                text.pack(
-                    fill="both",
-                    expand=True
-                )
-
-                for profile in unmapped:
-
-                    text.insert(
-                        tk.END,
-                        f"{profile}\n"
-                    )
-
-            else:
-
-                self.status.set(
-                    "No unmapped profiles found"
-                )
-
-        elif (
-            "member" in question
-        ):
-
-            self.status.set(
-                f"Members : {result['members']}"
-            )
-
-        elif (
-            "profile" in question
-        ):
-
-            self.status.set(
-                f"Profiles : {len(result['profiles'])}"
-            )
-
-        elif (
-            "column" in question
-        ):
-
-            self.status.set(
-                f"Columns : {result['columns']}"
-            )
-
-        elif (
-            "beam" in question
-        ):
-
-            self.status.set(
-                f"Beams : {result['beams']}"
-            )
-
-        elif (
-            "brace" in question
-        ):
-
-            self.status.set(
-                f"Braces : {result['braces']}"
-            )
-
-        elif (
-            "node" in question
-        ):
-
-            self.status.set(
-                f"Nodes : {result['nodes']}"
-            )
-
-        elif (
-            "group" in question
-        ):
-
-            self.status.set(
-                f"Groups : {result['groups']}"
-            )
-
-        else:
-
-            self.status.set(
-                "Question not understood"
-            )
+        )
