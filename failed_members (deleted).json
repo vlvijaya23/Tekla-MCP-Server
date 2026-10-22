@@ -1,0 +1,122 @@
+[
+    {
+        "member": 32,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.262,
+            "start": [
+                9.24002,
+                3.0,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.03801
+            ]
+        }
+    },
+    {
+        "member": 194,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.3,
+            "start": [
+                9.24002,
+                0.2,
+                3.3
+            ],
+            "end": [
+                9.24002,
+                0.5,
+                3.3
+            ]
+        }
+    },
+    {
+        "member": 196,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.35000000000000003,
+            "start": [
+                9.24002,
+                0.2,
+                0.0
+            ],
+            "end": [
+                9.24002,
+                0.55,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 217,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.4379999999999997,
+            "start": [
+                6.39201,
+                3.0,
+                0.0
+            ],
+            "end": [
+                6.83001,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 220,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "result": {
+            "status": "insert_failed",
+            "name": "BEAM",
+            "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+            "length": 0.26199999999999957,
+            "start": [
+                7.13001,
+                3.0,
+                0.0
+            ],
+            "end": [
+                7.39201,
+                3.0,
+                0.0
+            ]
+        }
+    },
+    {
+        "member": 233,
+        "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+        "result": {
+            "status": "insert_failed",
+            "name": "COLUMN",
+            "profile": "TUBE TH 0.012 WT 0.22 DT 0.21",
+            "length": 0.2999999999999998,
+            "start": [
+                9.24002,
+                2.7,
+                3.30001
+            ],
+            "end": [
+                9.24002,
+                3.0,
+                3.30001
+            ]
+        }
+    }
+]

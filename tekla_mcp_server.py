@@ -703,6 +703,48 @@ def import_staad_json(
                     }
                 )
 
+        with open(
+            r"C:\tekla-mcp\failed_members.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                errors,
+                f,
+                indent=4
+            )
+
+        profile_summary = {}
+
+        for error in errors:
+
+            profile = error.get(
+                "profile",
+                "UNKNOWN"
+            )
+
+            profile_summary[
+                profile
+            ] = (
+                profile_summary.get(
+                    profile,
+                    0
+                ) + 1
+            )
+
+        with open(
+            r"C:\tekla-mcp\root_cause_report.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                profile_summary,
+                f,
+                indent=4
+            )
+
         return {
             "status": "completed",
             "created": created,
@@ -776,19 +818,47 @@ if __name__ == "__main__":
 
         print(result)
 
-        if "errors" in result:
+        with open(
+            r"C:\tekla-mcp\failed_members.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
 
-            with open(
-                "failed_members.json",
-                "w",
-                encoding="utf-8"
-            ) as f:
+            json.dump(
+                errors,
+                f,
+                indent=4
+            )
 
-                json.dump(
-                    result["errors"],
-                    f,
-                    indent=4
-                )
+        profile_summary = {}
+
+        for error in errors:
+
+            profile = error.get(
+                "profile",
+                "UNKNOWN"
+            )
+
+            profile_summary[
+                profile
+            ] = (
+                profile_summary.get(
+                    profile,
+                    0
+                ) + 1
+            )
+
+        with open(
+            r"C:\tekla-mcp\root_cause_report.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                profile_summary,
+                f,
+                indent=4
+            )
 
         profile_count = {}
 

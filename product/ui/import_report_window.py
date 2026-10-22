@@ -1,3 +1,5 @@
+import json
+import os
 import tkinter as tk
 from tkinter import ttk
 
@@ -33,7 +35,7 @@ class ImportReportWindow:
         )
 
         window.geometry(
-            f"900x{height}"
+            f"900x{500}"
         )
 
         window.resizable(
@@ -73,9 +75,57 @@ class ImportReportWindow:
             text=f"Skipped : {tekla['skipped']}"
         ).pack(anchor="w")
 
+        report_file = (
+            r"C:\tekla-mcp\root_cause_report.json"
+        )
+
+        if os.path.exists(
+            report_file
+        ):
+
+            root_frame = tk.LabelFrame(
+                window,
+                text="ROOT CAUSE SUMMARY"
+            )
+
+            root_frame.pack(
+                fill="x",
+                padx=10,
+                pady=5
+            )
+
+            with open(
+                report_file,
+                "r",
+                encoding="utf-8"
+            ) as f:
+
+                report = json.load(
+                    f
+                )
+
+            for profile, count in sorted(
+                report.items(),
+                key=lambda x: x[1],
+                reverse=True
+            ):
+
+                tk.Label(
+                    root_frame,
+                    text=(
+                        f"{profile} : "
+                        f"{count} failure(s)"
+                    )
+                ).pack(
+                    anchor="w"
+                )
+
         tree_frame = tk.LabelFrame(
             window,
-            text="FAILURE INTELLIGENCE"
+            text=(
+                f"FAILURE INTELLIGENCE "
+                f"({tekla['failed']} Failed)"
+            )
         )
 
         tree_frame.pack(
@@ -146,13 +196,24 @@ class ImportReportWindow:
                 )
             )
 
+        button_frame = tk.Frame(
+            window
+        )
+
+        button_frame.pack(
+            fill="x",
+            pady=10
+        )
+
         tk.Button(
-            window,
+            button_frame,
             text="OK",
             width=15,
+            height=2,
             command=window.destroy
         ).pack(
-            pady=10
+            side="left",
+            padx=10
         )
 
     def diagnose(
@@ -184,23 +245,4 @@ class ImportReportWindow:
 
         return (
             "Review required"
-        )
-
-        button_frame = tk.Frame(
-            window
-        )
-
-        button_frame.pack(
-            fill="x",
-            pady=10
-        )
-
-        tk.Button(
-            button_frame,
-            text="OK",
-            width=20,
-            height=2,
-            command=window.destroy
-        ).pack(
-            pady=5
         )

@@ -9,19 +9,30 @@ from product.controllers.approval_engine import (
     ApprovalEngine
 )
 
+from product.ui.learning_manager_window import (
+    LearningManagerWindow
+)
+
 
 class AnalysisWindow:
 
-    def __init__(self, result):
+    def __init__(
+        self,
+        result
+    ):
 
-        window = tk.Toplevel()
+        self.window = tk.Toplevel()
+
+        window = self.window
+
+        self.result = result
 
         window.title(
             "Analysis Dashboard"
         )
 
         window.geometry(
-            "900x680"
+            "900x650"
         )
 
         window.resizable(
@@ -43,32 +54,37 @@ class AnalysisWindow:
         tk.Label(
             summary_frame,
             text=f"Members Found : {result.get('members', 0)}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         tk.Label(
             summary_frame,
             text=f"Profiles Found : {len(result.get('profiles', []))}"
-        ).pack(anchor="w")
-
-        tk.Label(
-            summary_frame,
-            text=f"Mapped Profiles : {result.get('mapped_profiles', 0)}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         tk.Label(
             summary_frame,
             text=f"Columns : {result.get('columns', 0)}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         tk.Label(
             summary_frame,
             text=f"Beams : {result.get('beams', 0)}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         tk.Label(
             summary_frame,
             text=f"Braces : {result.get('braces', 0)}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         mapping_frame = tk.LabelFrame(
             window,
@@ -79,7 +95,7 @@ class AnalysisWindow:
             fill="both",
             expand=True,
             padx=10,
-            pady=10
+            pady=5
         )
 
         tree = ttk.Treeview(
@@ -90,7 +106,8 @@ class AnalysisWindow:
                 "confidence",
                 "status"
             ),
-            show="headings"
+            show="headings",
+            height=8
         )
 
         tree.heading(
@@ -115,27 +132,27 @@ class AnalysisWindow:
 
         tree.column(
             "staad",
-            width=250
+            width=280
         )
 
         tree.column(
             "tekla",
-            width=250
+            width=280
         )
 
         tree.column(
             "confidence",
-            width=100
+            width=120
         )
 
         tree.column(
             "status",
-            width=150
+            width=180
         )
 
         tree.pack(
-            fill="both",
-            expand=True
+            fill="x",
+            pady=5
         )
 
         intelligence = (
@@ -195,18 +212,22 @@ class AnalysisWindow:
         decision_frame.pack(
             fill="x",
             padx=10,
-            pady=10
+            pady=5
         )
 
         tk.Label(
             decision_frame,
             text=f"Auto Approved : {auto_approved}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         tk.Label(
             decision_frame,
             text=f"Review Required : {review_required}"
-        ).pack(anchor="w")
+        ).pack(
+            anchor="w"
+        )
 
         log_frame = tk.LabelFrame(
             window,
@@ -216,7 +237,7 @@ class AnalysisWindow:
         log_frame.pack(
             fill="x",
             padx=10,
-            pady=10
+            pady=5
         )
 
         log_box = tk.Text(
@@ -257,16 +278,79 @@ class AnalysisWindow:
         )
 
         button_frame.pack(
-            fill="x",
+            anchor="w",
+            padx=10,
             pady=10
         )
 
         tk.Button(
             button_frame,
+            text="AI Learning Manager",
+            width=25,
+            height=2,
+            command=lambda:
+                self.learn_profiles(
+                    result.get(
+                        "profiles",
+                        []
+                    )
+                )
+        ).pack(
+            side="left",
+            padx=(0, 10)
+        )
+
+        tk.Button(
+            button_frame,
             text="OK",
-            width=20,
+            width=10,
             height=2,
             command=window.destroy
         ).pack(
-            pady=5
+            side="left"
+        )
+
+    def learn_profiles(
+        self,
+        profiles
+    ):
+
+        intelligence = (
+            ProfileIntelligence()
+        )
+
+        unknown_profiles = []
+
+        for profile in profiles:
+
+            result = (
+                intelligence.infer_mapping(
+                    profile
+                )
+            )
+
+            if (
+                result["tekla"]
+                == "REVIEW_REQUIRED"
+            ):
+
+                unknown_profiles.append(
+                    profile
+                )
+
+        if unknown_profiles:
+
+            LearningManagerWindow(
+                unknown_profiles,
+                self.refresh_dashboard
+            )
+
+    def refresh_dashboard(
+        self
+    ):
+
+        self.window.destroy()
+
+        AnalysisWindow(
+            self.result
         )

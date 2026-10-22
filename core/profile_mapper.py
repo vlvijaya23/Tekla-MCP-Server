@@ -12,6 +12,9 @@ Future Enhancements:
 
 from typing import Dict
 
+from product.controllers.profile_learning_engine import (
+    ProfileLearningEngine
+)
 
 PROFILE_MAP: Dict[str, str] = {
     # HE Sections
@@ -29,37 +32,32 @@ PROFILE_MAP: Dict[str, str] = {
     "100X6.3SHS": "SHS100*100*6.3",
 }
 
-
 def map_profile(profile: str) -> str:
-    """
-    Convert STAAD profile to Tekla profile.
-
-    Example:
-        HE160A      -> HEA160
-        HE220A      -> HEA220
-        L75X75X10   -> L75*75*10
-
-    Parameters
-    ----------
-    profile : str
-        STAAD profile
-
-    Returns
-    -------
-    str
-        Tekla profile
-    """
-
+    
     if not profile:
+
         return ""
 
     profile = profile.strip()
+
+    learning = (
+        ProfileLearningEngine()
+    )
+
+    learned = (
+        learning.find_mapping(
+            profile.upper()
+        )
+    )
+
+    if learned:
+
+        return learned
 
     return PROFILE_MAP.get(
         profile,
         profile
     )
-
 
 def profile_exists(profile: str) -> bool:
     """

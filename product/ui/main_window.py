@@ -9,6 +9,10 @@ from product.controllers.analysis_controller import (
     AnalysisController
 )
 
+from product.controllers.profile_intelligence import (
+    ProfileIntelligence
+)
+
 from product.ui.analysis_window import (
     AnalysisWindow
 )
@@ -31,12 +35,14 @@ class MainWindow:
             AnalysisController()
         )
 
+        self.last_result = None
+
         root.title(
             "Tekla AI Modeler"
         )
 
         root.geometry(
-            "700x800"
+            "600x300"
         )
         root.resizable(
             False,
@@ -50,7 +56,7 @@ class MainWindow:
         title = tk.Label(
             root,
             text="TEKLA AI MODELER",
-            font=("Arial", 18, "bold")
+            font=("Arial", 18, "bold", "underline")
         )
 
         title.pack(
@@ -99,261 +105,6 @@ class MainWindow:
             text="Browse",
             width=10,
             command=self.browse_staad
-        ).pack(
-            side="right"
-        )
-
-        #
-        # Analysis Variables
-        #
-
-        self.profile_count = tk.StringVar(
-            value="0"
-        )
-
-        self.member_count = tk.StringVar(
-            value="0"
-        )
-
-        self.column_count = tk.StringVar(
-            value="0"
-        )
-
-        self.beam_count = tk.StringVar(
-            value="0"
-        )
-
-        self.brace_count = tk.StringVar(
-            value="0"
-        )
-
-        self.mapped_count = tk.StringVar(
-            value="0"
-        )
-
-        #
-        # ANALYSIS PANEL
-        #
-
-        analysis_frame = tk.LabelFrame(
-            root,
-            text="ANALYSIS RESULTS",
-            padx=10,
-            pady=10
-        )
-
-        analysis_frame.pack(
-            fill="x",
-            padx=20,
-            pady=5
-        )
-
-        tk.Label(
-            analysis_frame,
-            text="Profiles Found:"
-        ).grid(row=0, column=0, sticky="w", padx=5)
-
-        tk.Label(
-            analysis_frame,
-            textvariable=self.profile_count,
-            font=("Arial", 10, "bold")
-        ).grid(row=0, column=1, sticky="w")
-
-        tk.Label(
-            analysis_frame,
-            text="Columns:"
-        ).grid(row=0, column=2, sticky="w", padx=20)
-
-        tk.Label(
-            analysis_frame,
-            textvariable=self.column_count,
-            font=("Arial", 10, "bold")
-        ).grid(row=0, column=3, sticky="w")
-
-        tk.Label(
-            analysis_frame,
-            text="Beams:"
-        ).grid(row=0, column=4, sticky="w", padx=20)
-
-        tk.Label(
-            analysis_frame,
-            textvariable=self.beam_count,
-            font=("Arial", 10, "bold")
-        ).grid(row=0, column=5, sticky="w")
-
-        tk.Label(
-            analysis_frame,
-            text="Braces:"
-        ).grid(row=0, column=6, sticky="w", padx=20)
-
-        tk.Label(
-            analysis_frame,
-            textvariable=self.brace_count,
-            font=("Arial", 10, "bold")
-        ).grid(row=0, column=7, sticky="w")
-
-        #
-        # PROFILE MAPPING PANEL
-        #
-
-        profile_frame = tk.LabelFrame(
-            root,
-            text="PROFILE MAPPING",
-            padx=10,
-            pady=10
-        )
-
-        profile_frame.pack(
-            fill="both",
-            padx=20,
-            pady=10
-        )
-
-        self.profile_list = tk.Text(
-            profile_frame,
-            height=3
-        )
-
-        self.profile_list.pack(
-            fill="both",
-            expand=True
-        )
-
-        #
-        # OPTIONS
-        #
-
-        options_frame = tk.LabelFrame(
-            root,
-            text="OPTIONS",
-            padx=10,
-            pady=10
-        )
-
-        options_frame.pack(
-            fill="x",
-            padx=20,
-            pady=5
-        )
-
-        self.auto_mapping = tk.BooleanVar(
-            value=True
-        )
-
-        self.auto_classification = tk.BooleanVar(
-            value=True
-        )
-
-        self.auto_merge = tk.BooleanVar(
-            value=True
-        )
-
-        self.qa_validation = tk.BooleanVar(
-            value=True
-        )
-
-        tk.Checkbutton(
-            options_frame,
-            text="Auto Profile Mapping",
-            variable=self.auto_mapping
-        ).pack(anchor="w")
-
-        tk.Checkbutton(
-            options_frame,
-            text="Auto Classification",
-            variable=self.auto_classification
-        ).pack(anchor="w")
-
-        tk.Checkbutton(
-            options_frame,
-            text="Auto Column Merge",
-            variable=self.auto_merge
-        ).pack(anchor="w")
-
-        tk.Checkbutton(
-            options_frame,
-            text="QA Validation",
-            variable=self.qa_validation
-        ).pack(anchor="w")
-
-        #
-        # PROJECT SUMMARY
-        #
-
-        summary_frame = tk.LabelFrame(
-            root,
-            text="PROJECT SUMMARY",
-            padx=10,
-            pady=10
-        )
-
-        summary_frame.pack(
-            fill="x",
-            padx=20,
-            pady=5
-        )
-
-        tk.Label(
-            summary_frame,
-            text="Members Found:"
-        ).grid(
-            row=0,
-            column=0,
-            sticky="w"
-        )
-
-        tk.Label(
-            summary_frame,
-            textvariable=self.member_count,
-            font=("Arial", 10, "bold")
-        ).grid(
-            row=0,
-            column=1,
-            sticky="w"
-        )
-
-        #
-        # COPILOT
-        #
-
-        copilot_frame = tk.LabelFrame(
-            root,
-            text="COPILOT",
-            padx=10,
-            pady=10
-        )
-
-        copilot_frame.pack(
-            fill="x",
-            padx=20,
-            pady=5
-        )
-
-        self.copilot_question = tk.StringVar()
-
-        copilot_inner = tk.Frame(
-            copilot_frame
-        )
-
-        copilot_inner.pack(
-            fill="x"
-        )
-
-        tk.Entry(
-            copilot_inner,
-            textvariable=self.copilot_question
-        ).pack(
-            side="left",
-            fill="x",
-            expand=True,
-            padx=(0, 5)
-        )
-
-        tk.Button(
-            copilot_inner,
-            text="Send",
-            width=10,
-            command=self.ask_copilot
         ).pack(
             side="right"
         )
@@ -471,49 +222,7 @@ class MainWindow:
             )
         )
 
-        self.profile_list.delete(
-            1.0,
-            tk.END
-        )
-
-        for profile in result["profiles"]:
-
-            self.profile_list.insert(
-                tk.END,
-                f"{profile}\n"
-            )
-
-        self.member_count.set(
-            str(
-                result["members"]
-            )
-        )
-
-        self.column_count.set(
-            str(
-                result["columns"]
-            )
-        )
-
-        self.beam_count.set(
-            str(
-                result["beams"]
-            )
-        )
-
-        self.brace_count.set(
-            str(
-                result["braces"]
-            )
-        )
-
-        self.profile_count.set(
-            str(
-                len(
-                    result["profiles"]
-                )
-            )
-        )
+        self.last_result = result
 
         self.status.set(
             "Analysis Complete"
@@ -562,30 +271,166 @@ class MainWindow:
                 f"Error : {str(ex)}"
             )
 
-    def ask_copilot(self):
+    def ask_copilot(
+        self
+    ):
 
         question = (
             self.copilot_question.get()
+            .strip()
+            .lower()
         )
 
         if not question:
 
             return
 
-        self.status.set(
-            f"Copilot received: {question}"
-        )
+        if not self.last_result:
 
-    def ask_copilot(self):
-
-        question = (
-            self.copilot_question.get()
-        )
-
-        if not question:
+            self.status.set(
+                "Analyze a model first"
+            )
 
             return
 
-        self.status.set(
-            f"Copilot received: {question}"
-        )
+        result = self.last_result
+
+        if (
+            "unmapped" in question
+            or
+            "review" in question
+            or
+            "learning" in question
+            or
+            "need learning" in question
+            or
+            "profiles needing learning" in question
+            or
+            "review required" in question
+        ):
+
+            intelligence = (
+                ProfileIntelligence()
+            )
+
+            unmapped = []
+
+            for profile in result.get(
+                "profiles",
+                []
+            ):
+
+                mapping = (
+                    intelligence.infer_mapping(
+                        profile
+                    )
+                )
+
+                if (
+                    mapping["tekla"]
+                    == "REVIEW_REQUIRED"
+                ):
+
+                    unmapped.append(
+                        profile
+                    )
+
+            if unmapped:
+
+                self.status.set(
+                    f"Unmapped Profiles : {len(unmapped)}"
+                )
+
+                popup = tk.Toplevel()
+
+                popup.title(
+                    "Copilot Result"
+                )
+
+                popup.geometry(
+                    "700x300"
+                )
+
+                text = tk.Text(
+                    popup
+                )
+
+                text.pack(
+                    fill="both",
+                    expand=True
+                )
+
+                for profile in unmapped:
+
+                    text.insert(
+                        tk.END,
+                        f"{profile}\n"
+                    )
+
+            else:
+
+                self.status.set(
+                    "No unmapped profiles found"
+                )
+
+        elif (
+            "member" in question
+        ):
+
+            self.status.set(
+                f"Members : {result['members']}"
+            )
+
+        elif (
+            "profile" in question
+        ):
+
+            self.status.set(
+                f"Profiles : {len(result['profiles'])}"
+            )
+
+        elif (
+            "column" in question
+        ):
+
+            self.status.set(
+                f"Columns : {result['columns']}"
+            )
+
+        elif (
+            "beam" in question
+        ):
+
+            self.status.set(
+                f"Beams : {result['beams']}"
+            )
+
+        elif (
+            "brace" in question
+        ):
+
+            self.status.set(
+                f"Braces : {result['braces']}"
+            )
+
+        elif (
+            "node" in question
+        ):
+
+            self.status.set(
+                f"Nodes : {result['nodes']}"
+            )
+
+        elif (
+            "group" in question
+        ):
+
+            self.status.set(
+                f"Groups : {result['groups']}"
+            )
+
+        else:
+
+            self.status.set(
+                "Question not understood"
+            )
