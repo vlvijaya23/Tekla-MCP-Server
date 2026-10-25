@@ -4,6 +4,10 @@ import threading
 from tkinter import ttk
 from tkinter import filedialog
 
+from product.ui.tekla_cleanup_window import (
+    TeklaCleanupWindow
+)
+
 from product.ui.import_report_window import (
     ImportReportWindow
 )
@@ -164,12 +168,11 @@ class MainWindow:
         tk.Button(
             button_frame,
             text="Analyze Model",
-            width=25,
-            height=3,
+            width=18,
+            height=1,
             font=(
                 "Arial",
                 10,
-                "bold"
             ),
             command=self.analyze_model
         ).pack(
@@ -180,14 +183,43 @@ class MainWindow:
         tk.Button(
             button_frame,
             text="Create Tekla Model",
-            width=25,
-            height=3,
+            width=18,
+            height=1,
             font=(
                 "Arial",
                 10,
-                "bold"
             ),
             command=self.create_model
+        ).pack(
+            side="left",
+            padx=5
+        )
+
+        tk.Button(
+            button_frame,
+            text="Tekla Cleanup",
+            width=18,
+            height=1,
+            font=(
+                "Arial",
+                10,
+            ),
+            command=self.open_cleanup_window
+        ).pack(
+            side="left",
+            padx=5
+        )
+
+        tk.Button(
+            button_frame,
+            text="OK",
+            width=12,
+            height=1,
+            font=(
+                "Arial",
+                10,
+            ),
+            command=self.root.destroy
         ).pack(
             side="left",
             padx=5
@@ -374,6 +406,12 @@ class MainWindow:
                     str(ex)
                 )
             )
+
+    def open_cleanup_window(
+        self
+    ):
+
+        TeklaCleanupWindow()
 
     def import_completed(
         self,

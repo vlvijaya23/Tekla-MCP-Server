@@ -98,8 +98,28 @@ class AnalysisWindow:
             pady=5
         )
 
+        tree_container = tk.Frame(
+            mapping_frame
+        )
+
+        tree_container.pack(
+            fill="both",
+            expand=True,
+            pady=5
+        )
+
+        scrollbar = ttk.Scrollbar(
+            tree_container,
+            orient="vertical"
+        )
+
+        scrollbar.pack(
+            side="right",
+            fill="y"
+        )
+
         tree = ttk.Treeview(
-            mapping_frame,
+            tree_container,
             columns=(
                 "staad",
                 "tekla",
@@ -107,7 +127,8 @@ class AnalysisWindow:
                 "status"
             ),
             show="headings",
-            height=8
+            height=8,
+            yscrollcommand=scrollbar.set
         )
 
         tree.heading(
@@ -151,8 +172,13 @@ class AnalysisWindow:
         )
 
         tree.pack(
-            fill="x",
-            pady=5
+            side="left",
+            fill="both",
+            expand=True
+        )
+
+        scrollbar.config(
+            command=tree.yview
         )
 
         intelligence = (
@@ -286,8 +312,8 @@ class AnalysisWindow:
         tk.Button(
             button_frame,
             text="AI Learning Manager",
-            width=25,
-            height=2,
+            width=18,
+            height=1,
             command=lambda:
                 self.learn_profiles(
                     result.get(
@@ -304,7 +330,7 @@ class AnalysisWindow:
             button_frame,
             text="OK",
             width=10,
-            height=2,
+            height=1,
             command=window.destroy
         ).pack(
             side="left"

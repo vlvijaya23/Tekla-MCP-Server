@@ -97,7 +97,7 @@ class LearningManagerWindow:
         self.learn_button = tk.Button(
             button_frame,
             text="Learn & Next",
-            width=20,
+            width=18,
             command=self.learn
         )
 
@@ -109,7 +109,7 @@ class LearningManagerWindow:
         tk.Button(
             button_frame,
             text="Skip",
-            width=20,
+            width=18,
             command=self.next_profile
         ).pack(
             side="left",

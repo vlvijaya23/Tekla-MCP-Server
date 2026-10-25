@@ -1,0 +1,62 @@
+def cleanup_model(
+    model,
+    is_collinear_beam
+):
+
+    summary = {
+        "status": "completed",
+        "column_chains_found": 0,
+        "column_chains_merged": 0,
+        "beam_chains_found": 0,
+        "beam_chains_merged": 0
+    }
+
+    column_chains = (
+        detect_selected_split_columns(
+            model
+        )
+    )
+
+    summary["column_chains_found"] = len(
+        column_chains
+    )
+
+    column_result = (
+        merge_safe_column_chains(
+            model
+        )
+    )
+
+    summary["column_chains_merged"] = (
+        column_result.get(
+            "chains",
+            0
+        )
+    )
+
+    beam_chains = (
+        detect_selected_split_beams(
+            model,
+            is_collinear_beam
+        )
+    )
+
+    summary["beam_chains_found"] = len(
+        beam_chains
+    )
+
+    beam_result = (
+        merge_all_safe_beam_chains(
+            model,
+            beam_chains
+        )
+    )
+
+    summary["beam_chains_merged"] = (
+        beam_result.get(
+            "chains",
+            0
+        )
+    )
+
+    return summary

@@ -1,0 +1,194 @@
+[
+    {
+        "member": 11,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06498999999999988
+    },
+    {
+        "member": 12,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "reason": "Length < 250 mm",
+        "length": 0.1
+    },
+    {
+        "member": 13,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06499000076934901
+    },
+    {
+        "member": 27,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 29,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 34,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 36,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 43,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.09999999999999964
+    },
+    {
+        "member": 44,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "reason": "Length < 250 mm",
+        "length": 0.09999999999999964
+    },
+    {
+        "member": 49,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.0649999999999995
+    },
+    {
+        "member": 50,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06498999999999988
+    },
+    {
+        "member": 57,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000009
+    },
+    {
+        "member": 118,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500999999999912
+    },
+    {
+        "member": 122,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500999999999912
+    },
+    {
+        "member": 175,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000999999999927
+    },
+    {
+        "member": 176,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000999999999927
+    },
+    {
+        "member": 180,
+        "profile": "HE220A",
+        "reason": "Length < 250 mm",
+        "length": 0.14999000000000073
+    },
+    {
+        "member": 182,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.0995
+    },
+    {
+        "member": 184,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.0649999999999995
+    },
+    {
+        "member": 185,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.0649999999999995
+    },
+    {
+        "member": 199,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 200,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 201,
+        "profile": "TUBE TH 0.01 WT 0.16 DT 0.152",
+        "reason": "Length < 250 mm",
+        "length": 0.10000000000000053
+    },
+    {
+        "member": 202,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.03500000000000014
+    },
+    {
+        "member": 203,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.03500000000000014
+    },
+    {
+        "member": 206,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.035009999999999764
+    },
+    {
+        "member": 209,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500000000000128
+    },
+    {
+        "member": 210,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500000000000128
+    },
+    {
+        "member": 211,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500000000000039
+    },
+    {
+        "member": 212,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.06500000000000039
+    },
+    {
+        "member": 213,
+        "profile": "HE160A",
+        "reason": "Length < 250 mm",
+        "length": 0.03500000000000014
+    },
+    {
+        "member": 227,
+        "profile": "HE220A",
+        "reason": "Length < 250 mm",
+        "length": 0.248
+    }
+]

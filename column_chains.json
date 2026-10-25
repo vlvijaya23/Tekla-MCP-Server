@@ -1,0 +1,42 @@
+[
+    {
+        "type": "COLUMN_CHAIN",
+        "profile": "HEA220",
+        "members": [
+            10332924,
+            10334844,
+            10334908,
+            10335164
+        ],
+        "segment_count": 4,
+        "length": 9920.0,
+        "status": "SAFE"
+    },
+    {
+        "type": "COLUMN_CHAIN",
+        "profile": "HEA220",
+        "members": [
+            10332988,
+            10334012,
+            10335004,
+            10335196
+        ],
+        "segment_count": 4,
+        "length": 9420.0,
+        "status": "SAFE"
+    },
+    {
+        "type": "COLUMN_CHAIN",
+        "profile": "HEA220",
+        "members": [
+            10333020,
+            10334972,
+            10335068,
+            10335676,
+            10335708
+        ],
+        "segment_count": 5,
+        "length": 9370.0,
+        "status": "SAFE"
+    }
+]

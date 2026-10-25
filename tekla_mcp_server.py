@@ -1,4 +1,4 @@
-"""
+﻿"""
 Tekla MCP Server
 """
 
@@ -96,6 +96,26 @@ from Tekla.Structures.Model.UI import (
 
 print("Tekla assemblies loaded successfully")
 
+from product.core.column_chain_detector import (
+    detect_selected_split_columns as detect_column_chains
+)
+
+from product.core.column_chain_merger import (
+    merge_safe_column_chains as merge_column_chains
+)
+
+from product.core.beam_chain_detector import (
+    detect_selected_split_beams as detect_beam_chains
+)
+
+from product.core.beam_chain_merger import (
+    merge_all_safe_beam_chains
+)
+
+from product.core.cleanup_engine import (
+    cleanup_model
+)
+
 # ----------------------------------------------------
 # HELPERS
 # ----------------------------------------------------
@@ -123,6 +143,40 @@ from core.profile_mapper import (
     add_profile_mapping
 )
 
+def build_column_merge(
+    chain_members
+):
+
+    merged = dict(
+        chain_members[0]
+    )
+
+    ys = []
+
+    for member in chain_members:
+
+        ys.append(
+            float(
+                member["START_Y"]
+            )
+        )
+
+        ys.append(
+            float(
+                member["END_Y"]
+            )
+        )
+
+    merged["START_Y"] = min(
+        ys
+    )
+
+    merged["END_Y"] = max(
+        ys
+    )
+
+    return merged
+
 def build_merged_members(
     members
 ):
@@ -145,26 +199,45 @@ def build_merged_members(
     }
 
     merged_members = []
+
     merged_ids = set()
 
     for chain in chains:
 
-        if chain["profile"] != "HE220A":
+        if chain["segment_count"] < 2:
             continue
 
-        first = member_lookup[
-            chain["members"][0]
-        ]
+        chain_members = []
 
-        last = member_lookup[
-            chain["members"][-1]
-        ]
+        for member_id in chain["members"]:
 
-        merged = dict(first)
+            if member_id in member_lookup:
 
-        merged["END_X"] = last["END_X"]
-        merged["END_Y"] = last["END_Y"]
-        merged["END_Z"] = last["END_Z"]
+                chain_members.append(
+                    member_lookup[
+                        member_id
+                    ]
+                )
+
+        if not chain_members:
+            continue
+
+        sample = (
+            chain_members[0]
+        )
+
+        if (
+            sample.get(
+                "GROUP",
+                ""
+            )
+            != "_COLUMN"
+        ):
+            continue
+
+        merged = build_column_merge(
+            chain_members
+        )
 
         merged["MEMBER_ID"] = (
             f"MERGED_{chain['members'][0]}"
@@ -180,9 +253,14 @@ def build_merged_members(
 
     for m in members:
 
-        if m["MEMBER_ID"] not in merged_ids:
+        if (
+            m["MEMBER_ID"]
+            not in merged_ids
+        ):
 
-            merged_members.append(m)
+            merged_members.append(
+                m
+            )
 
     return merged_members
 
@@ -299,6 +377,493 @@ def apply_length_limit(
 # ----------------------------------------------------
 # MCP TOOLS
 # ----------------------------------------------------
+
+@mcp.tool()
+def selected_column_position():
+
+    selector = (
+        ModelObjectSelector()
+    )
+
+    selected = (
+        selector.GetSelectedObjects()
+    )
+
+    result = []
+
+    while selected.MoveNext():
+
+        try:
+
+            beam = (
+                selected.Current
+            )
+
+            result.append(
+                {
+                    "id":
+                        beam.Identifier.ID,
+
+                    "profile":
+                        beam.Profile.ProfileString,
+
+                    "plane":
+                        str(
+                            beam.Position.Plane
+                        ),
+
+                    "rotation":
+                        str(
+                            beam.Position.Rotation
+                        ),
+
+                    "depth":
+                        str(
+                            beam.Position.Depth
+                        )
+                }
+            )
+
+        except Exception:
+            pass
+
+    return result
+
+@mcp.tool()
+def selected_member_details():
+
+    selector = (
+        ModelObjectSelector()
+    )
+
+    selected = (
+        selector.GetSelectedObjects()
+    )
+
+    result = []
+
+    while selected.MoveNext():
+
+        try:
+
+            beam = (
+                selected.Current
+            )
+
+            result.append(
+                {
+                    "id":
+                        beam.Identifier.ID,
+                    "profile":
+                        beam.Profile.ProfileString,
+                    "name":
+                        beam.Name,
+                    "class":
+                        beam.Class,
+                    "start_x":
+                        beam.StartPoint.X,
+                    "start_y":
+                        beam.StartPoint.Y,
+                    "start_z":
+                        beam.StartPoint.Z,
+                    "end_x":
+                        beam.EndPoint.X,
+                    "end_y":
+                        beam.EndPoint.Y,
+                    "end_z":
+                        beam.EndPoint.Z
+                }
+            )
+
+        except Exception:
+            pass
+
+    return result
+
+@mcp.tool()
+def selected_column_geometry():
+
+    selector = (
+        ModelObjectSelector()
+    )
+
+    selected = (
+        selector.GetSelectedObjects()
+    )
+
+    result = []
+
+    while selected.MoveNext():
+
+        try:
+
+            beam = (
+                selected.Current
+            )
+
+            result.append(
+                {
+                    "id":
+                        beam.Identifier.ID,
+                    "profile":
+                        beam.Profile.ProfileString,
+                    "material":
+                        beam.Material.MaterialString,
+                    "class":
+                        beam.Class,
+                    "start_x":
+                        beam.StartPoint.X,
+                    "start_y":
+                        beam.StartPoint.Y,
+                    "start_z":
+                        beam.StartPoint.Z,
+                    "end_x":
+                        beam.EndPoint.X,
+                    "end_y":
+                        beam.EndPoint.Y,
+                    "end_z":
+                        beam.EndPoint.Z
+                }
+            )
+
+        except Exception:
+            pass
+
+    return result
+
+@mcp.tool()
+def selected_column_offsets():
+
+    selector = (
+        ModelObjectSelector()
+    )
+
+    selected = (
+        selector.GetSelectedObjects()
+    )
+
+    result = []
+
+    while selected.MoveNext():
+
+        try:
+
+            beam = (
+                selected.Current
+            )
+
+            result.append(
+                {
+                    "id":
+                        beam.Identifier.ID,
+
+                    "start_offset_x":
+                        beam.StartPointOffset.Dx,
+
+                    "start_offset_y":
+                        beam.StartPointOffset.Dy,
+
+                    "start_offset_z":
+                        beam.StartPointOffset.Dz,
+
+                    "end_offset_x":
+                        beam.EndPointOffset.Dx,
+
+                    "end_offset_y":
+                        beam.EndPointOffset.Dy,
+
+                    "end_offset_z":
+                        beam.EndPointOffset.Dz
+                }
+            )
+
+        except Exception:
+            pass
+
+    return result
+
+@mcp.tool()
+def merge_selected_split_columns():
+
+    model = get_model()
+
+    selector = (
+        ModelObjectSelector()
+    )
+
+    selected = (
+        selector.GetSelectedObjects()
+    )
+
+    columns = []
+
+    while selected.MoveNext():
+
+        try:
+
+            beam = (
+                selected.Current
+            )
+
+            if (
+                beam.Name.upper()
+                != "COLUMN"
+            ):
+                continue
+
+            columns.append(
+                beam
+            )
+
+        except Exception:
+            pass
+
+    if len(columns) != 2:
+
+        return {
+            "status":
+                "select_exactly_2_columns"
+        }
+
+    col1 = columns[0]
+    col2 = columns[1]
+
+    start_point = min(
+        [
+            col1.StartPoint,
+            col1.EndPoint,
+            col2.StartPoint,
+            col2.EndPoint
+        ],
+        key=lambda p: p.Z
+    )
+
+    end_point = max(
+        [
+            col1.StartPoint,
+            col1.EndPoint,
+            col2.StartPoint,
+            col2.EndPoint
+        ],
+        key=lambda p: p.Z
+    )
+
+    merged = Beam()
+
+    merged.StartPoint = Point(
+        start_point.X,
+        start_point.Y,
+        start_point.Z
+    )
+
+    merged.EndPoint = Point(
+        end_point.X,
+        end_point.Y,
+        end_point.Z
+    )
+
+    merged.Profile.ProfileString = (
+        col1.Profile.ProfileString
+    )
+
+    merged.Material.MaterialString = (
+        col1.Material.MaterialString
+    )
+
+    merged.Class = (
+        col1.Class
+    )
+
+    merged.Name = (
+        col1.Name
+    )
+
+    merged.Position.Plane = (
+        col1.Position.Plane
+    )
+
+    merged.Position.Rotation = (
+        col1.Position.Rotation
+    )
+
+    merged.Position.Depth = (
+        col1.Position.Depth
+    )
+
+    print(
+        "BEFORE INSERT",
+        str(
+            merged.Position.Plane
+        ),
+        str(
+            merged.Position.Rotation
+        ),
+        str(
+            merged.Position.Depth
+        )
+    )
+
+    success = (
+        merged.Insert()
+    )
+
+    print(
+        "AFTER INSERT",
+        str(
+            merged.Position.Plane
+        ),
+        str(
+            merged.Position.Rotation
+        ),
+        str(
+            merged.Position.Depth
+        )
+    )
+
+    merged.Select()
+
+    print(
+        "MERGED:",
+        str(
+            merged.Position.Plane
+        ),
+        str(
+            merged.Position.Rotation
+        ),
+        str(
+            merged.Position.Depth
+        )
+    )
+
+    if not success:
+
+        return {
+            "status":
+                "merge_insert_failed"
+        }
+
+    col1.Delete()
+
+    col2.Delete()
+
+    model.CommitChanges()
+
+    return {
+        "status":
+            "merged",
+        "profile":
+            merged.Profile.ProfileString,
+        "length":
+            round(
+                abs(
+                    end_point.Z
+                    -
+                    start_point.Z
+                ),
+                2
+            )
+    }
+
+@mcp.tool()
+def is_collinear_beam(
+    beam_a,
+    beam_b,
+    tolerance=0.01
+):
+
+    ax = (
+        beam_a["end_x"]
+        - beam_a["start_x"]
+    )
+
+    ay = (
+        beam_a["end_y"]
+        - beam_a["start_y"]
+    )
+
+    az = (
+        beam_a["end_z"]
+        - beam_a["start_z"]
+    )
+
+    bx = (
+        beam_b["end_x"]
+        - beam_b["start_x"]
+    )
+
+    by = (
+        beam_b["end_y"]
+        - beam_b["start_y"]
+    )
+
+    bz = (
+        beam_b["end_z"]
+        - beam_b["start_z"]
+    )
+
+    cross_x = (
+        ay * bz
+        - az * by
+    )
+
+    cross_y = (
+        az * bx
+        - ax * bz
+    )
+
+    cross_z = (
+        ax * by
+        - ay * bx
+    )
+
+    return (
+        abs(cross_x) < tolerance
+        and abs(cross_y) < tolerance
+        and abs(cross_z) < tolerance
+    )
+
+@mcp.tool()
+def detect_selected_split_beams():
+
+    model = get_model()
+
+    return detect_beam_chains(
+        model,
+        is_collinear_beam
+    )
+
+@mcp.tool()
+def detect_selected_split_columns():
+
+    model = get_model()
+
+    return detect_column_chains(
+        model
+    )
+
+@mcp.tool()
+def merge_safe_column_chains():
+
+    model = get_model()
+
+    return merge_column_chains(
+        model
+    )
+
+@mcp.tool()
+def merge_detected_beam_chains():
+
+    model = get_model()
+
+    chains = detect_beam_chains(
+        model,
+        is_collinear_beam
+    )
+
+    return merge_all_safe_beam_chains(
+        model,
+        chains
+    )
 
 @mcp.tool()
 def get_model_info():
@@ -605,6 +1170,408 @@ def create_beam(
             "profile": profile
         }
 
+def audit_model(
+    members
+):
+
+    audit = {
+        "health_score": 100,
+        "split_columns": [],
+        "beam_gaps": [],
+        "profile_changes": [],
+        "tiny_members": [],
+        "duplicate_members": []
+    }
+
+    for member in members:
+
+        dx = (
+            float(member["END_X"])
+            - float(member["START_X"])
+        )
+
+        dy = (
+            float(member["END_Y"])
+            - float(member["START_Y"])
+        )
+
+        dz = (
+            float(member["END_Z"])
+            - float(member["START_Z"])
+        )
+
+        length = (
+            dx ** 2 +
+            dy ** 2 +
+            dz ** 2
+        ) ** 0.5
+
+        if length < 0.25:
+
+            audit[
+                "tiny_members"
+            ].append(
+                {
+                    "member":
+                        member[
+                            "MEMBER_ID"
+                        ],
+                    "profile":
+                        member[
+                            "PROFILE"
+                        ],
+                    "length":
+                        round(
+                            length,
+                            3
+                        )
+                }
+            )
+
+    profile_map = {}
+
+    for member in members:
+
+        if (
+            member.get(
+                "GROUP",
+                ""
+            )
+            != "_COLUMN"
+        ):
+            continue
+
+        x = round(
+            float(
+                member["START_X"]
+            ),
+            3
+        )
+
+        z = round(
+            float(
+                member["START_Z"]
+            ),
+            3
+        )
+
+        key = (
+            x,
+            z
+        )
+
+        if key not in profile_map:
+
+            profile_map[key] = set()
+
+        profile_map[key].add(
+            member["PROFILE"]
+        )
+
+    for location, profiles in profile_map.items():
+
+        if len(
+            profiles
+        ) > 1:
+
+            audit[
+                "profile_changes"
+            ].append(
+                {
+                    "location":
+                        location,
+                    "profiles":
+                        list(
+                            profiles
+                        )
+                }
+            )
+
+    beam_members = []
+
+    for member in members:
+
+        if (
+            member.get(
+                "GROUP",
+                ""
+            )
+            == "_COLUMN"
+        ):
+            continue
+
+        beam_members.append(
+            member
+        )
+
+    for beam_a in beam_members:
+
+        for beam_b in beam_members:
+
+            if (
+                beam_a[
+                    "MEMBER_ID"
+                ]
+                ==
+                beam_b[
+                    "MEMBER_ID"
+                ]
+            ):
+                continue
+
+            gap = abs(
+                float(
+                    beam_a[
+                        "END_X"
+                    ]
+                )
+                -
+                float(
+                    beam_b[
+                        "START_X"
+                    ]
+                )
+            )
+
+            if (
+                gap > 0.01
+                and
+                gap < 0.30
+            ):
+
+                audit[
+                    "beam_gaps"
+                ].append(
+                    {
+                        "member_a":
+                            beam_a[
+                                "MEMBER_ID"
+                            ],
+                        "member_b":
+                            beam_b[
+                                "MEMBER_ID"
+                            ],
+                        "gap":
+                            round(
+                                gap,
+                                3
+                            )
+                    }
+                )
+
+
+    column_locations = {}
+
+    for member in members:
+
+        if (
+            member.get(
+                "GROUP",
+                ""
+            )
+            != "_COLUMN"
+        ):
+            continue
+
+        x = round(
+            float(
+                member["START_X"]
+            ),
+            3
+        )
+
+        z = round(
+            float(
+                member["START_Z"]
+            ),
+            3
+        )
+
+        key = (
+            x,
+            z
+        )
+
+        if key not in column_locations:
+
+            column_locations[key] = []
+
+        column_locations[key].append(
+            member
+        )
+
+    for location, chain in column_locations.items():
+
+        if len(chain) > 1:
+
+            profiles = {
+                m["PROFILE"]
+                for m in chain
+            }
+
+            if len(profiles) > 1:
+
+                audit[
+                    "split_columns"
+                ].append(
+                    {
+                        "location":
+                            location,
+                        "profiles":
+                            list(
+                                profiles
+                            ),
+                        "member_count":
+                            len(
+                                chain
+                            )
+                    }
+                )
+
+    issue_count = (
+        len(
+            audit[
+                "split_columns"
+            ]
+        )
+        +
+        len(
+            audit[
+                "profile_changes"
+            ]
+        )
+        +
+        len(
+            audit[
+                "beam_gaps"
+            ]
+        )
+    )
+
+    audit[
+        "health_score"
+    ] = max(
+        0,
+        100 - (
+            issue_count * 10
+        )
+    )
+
+    return audit
+
+def finalize_audit(
+    audit
+):
+
+    finalizer = {
+        "auto_fixed": [],
+        "review_required": []
+    }
+
+    for member in audit[
+        "tiny_members"
+    ]:
+
+        finalizer[
+            "auto_fixed"
+        ].append(
+            {
+                "type":
+                    "TINY_MEMBER",
+                "member":
+                    member[
+                        "member"
+                    ],
+                "profile":
+                    member[
+                        "profile"
+                    ],
+                "action":
+                    "SAFE_TO_IGNORE"
+            }
+        )
+
+    for beam in audit[
+        "beam_gaps"
+    ]:
+
+        finalizer[
+            "review_required"
+        ].append(
+            {
+                "type":
+                    "BEAM_GAP",
+                "member_a":
+                    beam[
+                        "member_a"
+                    ],
+                "member_b":
+                    beam[
+                        "member_b"
+                    ],
+                "gap":
+                    beam[
+                        "gap"
+                    ],
+                "action":
+                    "MERGE_RECOMMENDED"
+            }
+        )
+
+    for column in audit[
+        "split_columns"
+    ]:
+
+        profiles = (
+            column[
+                "profiles"
+            ]
+        )
+
+        recommended_profile = (
+            profiles[0]
+        )
+
+        confidence = (
+            "MEDIUM"
+        )
+
+        if (
+            "HE220A"
+            in profiles
+        ):
+
+            recommended_profile = (
+                "HE220A"
+            )
+
+            confidence = (
+                "HIGH"
+            )
+
+        finalizer[
+            "review_required"
+        ].append(
+            {
+                "type":
+                    "SPLIT_COLUMN",
+                "location":
+                    column[
+                        "location"
+                    ],
+                "profiles":
+                    profiles,
+                "recommended_profile":
+                    recommended_profile,
+                "confidence":
+                    confidence,
+                "action":
+                    "REVIEW_REQUIRED"
+            }
+        )
+
+    return finalizer
+
 @mcp.tool()
 def import_staad_json(
     json_file: str = r"C:\TeklaAssistant\data\staad_payload.json",
@@ -627,6 +1594,40 @@ def import_staad_json(
             []
         )
 
+        audit = audit_model(
+            members
+        )
+
+        finalizer = (
+            finalize_audit(
+                audit
+            )
+        )
+
+        with open(
+            r"C:\tekla-mcp\finalizer_report.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                finalizer,
+                f,
+                indent=4
+            )
+
+        with open(
+            r"C:\tekla-mcp\model_audit.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                audit,
+                f,
+                indent=4
+            )
+
         members = build_merged_members(
             members
         )
@@ -642,6 +1643,7 @@ def import_staad_json(
         created = 0
         failed = 0
         skipped = 0
+        skipped_members = []
         errors = []
 
         total_members = len(
@@ -680,6 +1682,18 @@ def import_staad_json(
                 elif status == "short_member":
 
                     skipped += 1
+
+                    skipped_members.append(
+                        {
+                            "member": member["MEMBER_ID"],
+                            "profile": member["PROFILE"],
+                            "reason": "Length < 250 mm",
+                            "length": result.get(
+                                "length",
+                                0
+                            )
+                        }
+                    )
 
                 else:
 
@@ -768,13 +1782,13 @@ def import_staad_json(
             )
 
         with open(
-            r"C:\tekla-mcp\root_cause_report.json",
+            r"C:\tekla-mcp\skipped_members.json",
             "w",
             encoding="utf-8"
         ) as f:
 
             json.dump(
-                profile_summary,
+                skipped_members,
                 f,
                 indent=4
             )
@@ -785,7 +1799,8 @@ def import_staad_json(
             "failed": failed,
             "skipped": skipped,
             "total": len(members),
-            "errors": errors
+            "errors": errors,
+            "skipped_members": skipped_members
         }
 
     except Exception as ex:
@@ -794,6 +1809,16 @@ def import_staad_json(
             "status": "exception",
             "error": str(ex)
         }
+
+@mcp.tool()
+def auto_cleanup_model():
+
+    model = get_model()
+
+    return cleanup_model(
+        model,
+        is_collinear_beam
+    )
 
 # ----------------------------------------------------
 # MAIN
@@ -844,75 +1869,19 @@ if __name__ == "__main__":
 
         print()
 
-        print("STAAD Import Test:")
+        print("Selected Member Details:")
+        print()
 
-        result = import_staad_json(
-            limit=0
+        result = (
+            selected_column_offsets()
         )
 
-        print(result)
-
-        with open(
-            r"C:\tekla-mcp\failed_members.json",
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            json.dump(
-                errors,
-                f,
+        print(
+            json.dumps(
+                result,
                 indent=4
             )
-
-        profile_summary = {}
-
-        for error in errors:
-
-            profile = error.get(
-                "profile",
-                "UNKNOWN"
-            )
-
-            profile_summary[
-                profile
-            ] = (
-                profile_summary.get(
-                    profile,
-                    0
-                ) + 1
-            )
-
-        with open(
-            r"C:\tekla-mcp\root_cause_report.json",
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            json.dump(
-                profile_summary,
-                f,
-                indent=4
-            )
-
-        profile_count = {}
-
-        for err in result["errors"]:
-
-            profile = err["profile"]
-
-            profile_count[profile] = (
-                profile_count.get(profile, 0) + 1
-            )
-
-        print()
-        print("FAILURES BY PROFILE")
-
-        for p, c in sorted(
-            profile_count.items(),
-            key=lambda x: x[1],
-            reverse=True
-        ):
-            print(f"{c:3}  {p}")
+        )
 
     else:
 
@@ -939,4 +1908,5 @@ if __name__ == "__main__":
             print()
 
             input("Press Enter to close...")
+
 

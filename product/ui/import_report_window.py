@@ -35,7 +35,7 @@ class ImportReportWindow:
         )
 
         window.geometry(
-            f"900x{500}"
+            f"900x{700}"
         )
 
         window.resizable(
@@ -135,14 +135,36 @@ class ImportReportWindow:
             pady=10
         )
 
+        failure_container = tk.Frame(
+            tree_frame
+        )
+
+        failure_container.pack(
+            fill="both",
+            expand=True
+        )
+
+        failure_scrollbar = ttk.Scrollbar(
+            failure_container,
+            orient="vertical"
+        )
+
+        failure_scrollbar.pack(
+            side="right",
+            fill="y"
+        )
+
         tree = ttk.Treeview(
-            tree_frame,
+            failure_container,
             columns=(
                 "member",
                 "profile",
                 "reason"
             ),
-            show="headings"
+            show="headings",
+            yscrollcommand=(
+                failure_scrollbar.set
+            )
         )
 
         tree.heading(
@@ -161,8 +183,13 @@ class ImportReportWindow:
         )
 
         tree.pack(
-            fill="x",
-            expand=False
+            side="left",
+            fill="both",
+            expand=True
+        )
+
+        failure_scrollbar.config(
+            command=tree.yview
         )
 
         for error in tekla.get(
@@ -196,6 +223,118 @@ class ImportReportWindow:
                 )
             )
 
+        skipped_frame = tk.LabelFrame(
+            window,
+            text=(
+                f"SKIPPED MEMBER INTELLIGENCE "
+                f"({tekla['skipped']} Skipped)"
+            )
+        )
+
+        skipped_frame.pack(
+            fill="both",
+            expand=True,
+            padx=10,
+            pady=5
+        )
+
+        skipped_container = tk.Frame(
+            skipped_frame
+        )
+
+        skipped_container.pack(
+            fill="both",
+            expand=True
+        )
+
+        skipped_scrollbar = ttk.Scrollbar(
+            skipped_container,
+            orient="vertical"
+        )
+
+        skipped_scrollbar.pack(
+            side="right",
+            fill="y"
+        )
+
+        skipped_tree = ttk.Treeview(
+            skipped_container,
+            columns=(
+                "member",
+                "profile",
+                "reason",
+                "length"
+            ),
+            show="headings",
+            yscrollcommand=(
+                skipped_scrollbar.set
+            )
+        )
+
+        skipped_tree.heading(
+            "member",
+            text="MEMBER"
+        )
+
+        skipped_tree.heading(
+            "profile",
+            text="PROFILE"
+        )
+
+        skipped_tree.heading(
+            "reason",
+            text="REASON"
+        )
+
+        skipped_tree.heading(
+            "length",
+            text="LENGTH"
+        )
+
+        skipped_tree.pack(
+            side="left",
+            fill="both",
+            expand=True
+        )
+
+        skipped_scrollbar.config(
+            command=skipped_tree.yview
+        )
+
+        for skipped in tekla.get(
+            "skipped_members",
+            []
+        ):
+
+            skipped_tree.insert(
+                "",
+                "end",
+                values=(
+                    skipped.get(
+                        "member",
+                        ""
+                    ),
+                    skipped.get(
+                        "profile",
+                        ""
+                    ),
+                    skipped.get(
+                        "reason",
+                        ""
+                    ),
+                    round(
+                        float(
+                            skipped.get(
+                                "length",
+                                0
+                            )
+                        ),
+                        3
+                    )
+                )
+            )
+
+
         button_frame = tk.Frame(
             window
         )
@@ -209,7 +348,7 @@ class ImportReportWindow:
             button_frame,
             text="OK",
             width=15,
-            height=2,
+            height=1,
             command=window.destroy
         ).pack(
             side="left",

@@ -130,5 +130,841 @@
     {
         "event": "CREATE_MODEL",
         "timestamp": "2026-10-23 03:18:35.607548"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 11:03:55.207351"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 11:04:32.694402"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:04:55.111009"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:05:33.277848"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 11:07:10.157470"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 11:07:15.410303"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:07:17.581348"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:07:36.136491"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 11:07:44.828784"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 11:07:50.419990"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:07:53.560461"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 11:08:12.196269"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 11:08:18.641341"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:08:20.347634"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 11:14:27.500514"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 11:14:33.392170"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 11:14:36.400375"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 14:47:38.046252"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 14:47:46.914251"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 14:47:51.820961"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 15:54:22.838466"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 15:54:44.035948"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 15:54:50.184900"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 15:57:27.293831"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 15:57:31.798692"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 15:57:33.931631"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:00:56.350280"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:01:00.754228"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:01:03.177191"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:11:00.296555"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:11:08.776720"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:11:13.049178"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:13:14.696796"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:13:19.962178"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:13:22.205934"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:18:19.228505"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:18:23.949657"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:18:26.647269"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:24:46.744187"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:24:51.209155"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:24:54.291788"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:28:55.106143"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:29:01.595881"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:29:16.483608"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:30:57.995969"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 16:31:10.028773"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 16:31:26.329864"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 16:31:46.054092"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 17:36:48.412307"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 17:36:54.815081"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 17:36:57.138114"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 18:04:49.529656"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 18:04:55.870797"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 18:05:00.677279"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 18:05:15.669519"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 18:25:01.720255"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 18:25:10.850501"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 18:25:17.909614"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-23 18:30:02.584834"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-23 18:30:13.268333"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-23 18:30:17.412456"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 08:09:26.685510"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 08:09:36.471448"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 08:09:42.608702"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:10:55.143801"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:20:52.422603"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:24:43.671495"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:25:23.722820"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:26:14.136814"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:27:34.556195"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:30:35.912341"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:31:24.735723"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:31:57.352743"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:32:18.508087"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:33:22.778605"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:33:38.414177"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:34:27.801157"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 10:37:14.349926"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 10:37:25.498691"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 10:37:48.471718"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 10:38:06.634000"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 16:38:30.113631"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 16:38:42.292309"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:38:51.532187"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 16:45:51.841685"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 16:45:57.164317"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:46:00.826199"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 16:47:14.433017"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 16:47:29.312190"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:47:32.526521"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 16:48:12.258757"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 16:48:18.382058"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:48:23.050199"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:48:44.060783"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 16:51:54.827045"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 16:52:05.589573"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 16:52:08.839122"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 17:40:16.626428"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 17:40:30.689766"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 17:40:33.129871"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 17:47:44.771771"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 17:48:14.232317"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 17:48:19.285103"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 17:55:28.998766"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 17:55:40.224950"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 17:55:42.977557"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:06:32.903122"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:06:37.729911"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:06:40.419674"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:06:52.487896"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:15:35.857962"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:15:40.661061"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:15:47.075320"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:19:53.334610"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:20:13.109869"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:20:17.456053"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:22:12.272414"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:22:42.725311"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:22:53.524757"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:23:36.874661"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:23:42.508765"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:23:46.536713"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:32:02.210287"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:32:21.696815"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:32:24.731042"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:38:01.820309"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:38:10.778878"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:38:13.707127"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:41:41.113563"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:41:49.592651"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:41:51.949632"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-24 18:47:43.025380"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-24 18:48:03.892201"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-24 18:48:06.151176"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:23:20.920019"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:23:34.048512"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:23:37.571504"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:36:50.106057"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:36:59.392348"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:37:01.757786"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:45:20.356664"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:45:27.714659"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:45:30.279671"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:48:24.049770"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:48:30.986223"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:48:33.135877"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:55:41.271147"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:55:50.277451"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:55:53.261425"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 16:59:00.842505"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 16:59:13.708112"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 16:59:16.128222"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:10:22.669890"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:11:16.702950"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:11:22.610522"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:13:12.663237"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:13:34.369373"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:13:46.960335"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:15:08.800929"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:15:23.415642"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:15:29.305355"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:19:03.338843"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:19:09.407595"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:19:11.905412"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:20:46.845836"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:21:04.547206"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:21:06.817740"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:32:12.807052"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:32:19.115877"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:32:21.450303"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:36:50.866678"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:37:28.601767"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:37:31.281377"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:40:34.890204"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 17:40:41.496077"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 17:40:44.511791"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 17:42:09.022362"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 18:55:22.726438"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 18:55:29.577014"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 18:55:34.267517"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 19:33:38.699217"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 19:33:49.509479"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 19:34:05.076119"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 19:47:11.762546"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 19:47:30.865977"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 19:47:42.748876"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 19:47:45.736836"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 19:57:35.212456"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 19:59:21.968044"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 19:59:23.749423"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 20:05:12.239945"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 20:05:24.278005"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 20:05:31.918560"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 20:08:06.577036"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 20:08:16.552653"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 20:08:21.966932"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 20:08:24.989007"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 20:08:32.728008"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 21:11:10.879209"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 21:11:16.412343"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 21:11:24.636845"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 21:12:35.591279"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 21:12:37.934052"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 22:00:07.934666"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 22:00:30.706516"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 22:00:36.981732"
+    },
+    {
+        "event": "APPLICATION_STARTED",
+        "timestamp": "2026-10-25 22:01:30.157241"
+    },
+    {
+        "event": "ANALYZE_MODEL",
+        "timestamp": "2026-10-25 22:01:36.936967"
+    },
+    {
+        "event": "CREATE_MODEL",
+        "timestamp": "2026-10-25 22:01:41.095851"
     }
 ]
