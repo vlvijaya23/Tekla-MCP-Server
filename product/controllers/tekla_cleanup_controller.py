@@ -1,7 +1,8 @@
 from tekla_mcp_server import (
     detect_selected_split_columns,
     detect_selected_split_beams,
-    merge_safe_column_chains
+    merge_safe_column_chains,
+    merge_detected_beam_chains
 )
 
 
@@ -22,6 +23,18 @@ def detect_members():
 
 def merge_members():
 
-    return (
+    column_result = (
         merge_safe_column_chains()
     )
+
+    beam_result = (
+        merge_detected_beam_chains()
+    )
+
+    return {
+        "columns":
+            column_result,
+
+        "beams":
+            beam_result
+    }

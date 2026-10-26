@@ -1,9 +1,12 @@
-from Tekla.Structures.Model import (
+﻿from Tekla.Structures.Model import (
     ModelObject
 )
 
-# PATCH_START_BEAM_DETECTOR
+from product.core.beam_split_validator import (
+    column_exists_between
+)
 
+# PATCH_START_BEAM_DETECTOR
 def detect_selected_split_beams(
     model,
     is_collinear_beam
@@ -97,26 +100,56 @@ def detect_selected_split_beams(
                     )
 
                     connected = (
-                        abs(
-                            existing["end_x"]
-                            -
-                            candidate["start_x"]
+
+                        (
+                            abs(
+                                existing["end_x"]
+                                -
+                                candidate["start_x"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                existing["end_y"]
+                                -
+                                candidate["start_y"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                existing["end_z"]
+                                -
+                                candidate["start_z"]
+                            ) < 150
                         )
-                        < 10
-                        and
-                        abs(
-                            existing["end_y"]
-                            -
-                            candidate["start_y"]
+
+                        or
+
+                        (
+                            abs(
+                                candidate["end_x"]
+                                -
+                                existing["start_x"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                candidate["end_y"]
+                                -
+                                existing["start_y"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                candidate["end_z"]
+                                -
+                                existing["start_z"]
+                            ) < 150
                         )
-                        < 10
-                        and
-                        abs(
-                            existing["end_z"]
-                            -
-                            candidate["start_z"]
-                        )
-                        < 10
                     )
 
                     collinear = (
@@ -126,10 +159,13 @@ def detect_selected_split_beams(
                         )
                     )
 
+                    blocked_by_column = False
+
                     if (
                         same_profile
                         and connected
                         and collinear
+                        and not blocked_by_column
                     ):
 
                         chain.append(
@@ -175,5 +211,4 @@ def detect_selected_split_beams(
                 )
 
     return chains
-
 # PATCH_END_BEAM_DETECTOR

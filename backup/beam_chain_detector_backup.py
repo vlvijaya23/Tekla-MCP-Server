@@ -1,0 +1,214 @@
+﻿from Tekla.Structures.Model import (
+    ModelObject
+)
+
+from product.core.beam_split_validator import (
+    column_exists_between
+)
+
+# PATCH_START_BEAM_DETECTOR
+def detect_selected_split_beams(
+    model,
+    is_collinear_beam
+):
+
+    selector = (
+        model.GetModelObjectSelector()
+    )
+
+    objects = (
+        selector.GetAllObjectsWithType(
+            ModelObject.ModelObjectEnum.BEAM
+        )
+    )
+
+    beams = []
+
+    while objects.MoveNext():
+
+        try:
+
+            beam = objects.Current
+
+            if (
+                beam.Name.upper()
+                == "COLUMN"
+            ):
+                continue
+
+            beams.append(
+                {
+                    "id":
+                        beam.Identifier.ID,
+
+                    "profile":
+                        beam.Profile.ProfileString,
+
+                    "start_x":
+                        beam.StartPoint.X,
+
+                    "start_y":
+                        beam.StartPoint.Y,
+
+                    "start_z":
+                        beam.StartPoint.Z,
+
+                    "end_x":
+                        beam.EndPoint.X,
+
+                    "end_y":
+                        beam.EndPoint.Y,
+
+                    "end_z":
+                        beam.EndPoint.Z
+                }
+            )
+
+        except Exception:
+            pass
+
+    chains = []
+    used = set()
+
+    for beam in beams:
+
+        if beam["id"] in used:
+            continue
+
+        chain = [beam]
+
+        changed = True
+
+        while changed:
+
+            changed = False
+
+            for candidate in beams:
+
+                if candidate["id"] in used:
+                    continue
+
+                if candidate["id"] == beam["id"]:
+                    continue
+
+                for existing in chain:
+
+                    same_profile = (
+                        existing["profile"]
+                        ==
+                        candidate["profile"]
+                    )
+
+                    connected = (
+
+                        (
+                            abs(
+                                existing["end_x"]
+                                -
+                                candidate["start_x"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                existing["end_y"]
+                                -
+                                candidate["start_y"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                existing["end_z"]
+                                -
+                                candidate["start_z"]
+                            ) < 150
+                        )
+
+                        or
+
+                        (
+                            abs(
+                                candidate["end_x"]
+                                -
+                                existing["start_x"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                candidate["end_y"]
+                                -
+                                existing["start_y"]
+                            ) < 150
+
+                            and
+
+                            abs(
+                                candidate["end_z"]
+                                -
+                                existing["start_z"]
+                            ) < 150
+                        )
+                    )
+
+                    collinear = (
+                        is_collinear_beam(
+                            existing,
+                            candidate
+                        )
+                    )
+
+                    blocked_by_column = False
+
+                    if (
+                        same_profile
+                        and connected
+                        and collinear
+                        and not blocked_by_column
+                    ):
+
+                        chain.append(
+                            candidate
+                        )
+
+                        used.add(
+                            candidate["id"]
+                        )
+
+                        changed = True
+
+                        break
+
+                if changed:
+                    break
+
+        if len(chain) > 1:
+
+            chains.append(
+                {
+                    "type":
+                        "BEAM_CHAIN",
+
+                    "profile":
+                        chain[0]["profile"],
+
+                    "members":
+                        [
+                            m["id"]
+                            for m in chain
+                        ],
+
+                    "segment_count":
+                        len(chain)
+                }
+            )
+
+            for member in chain:
+
+                used.add(
+                    member["id"]
+                )
+
+    return chains
+# PATCH_END_BEAM_DETECTOR

@@ -11082,8 +11082,8 @@
                 3.3
             ],
             "profiles": [
-                "TUBE TH 0.012 WT 0.22 DT 0.21",
-                "HE220A"
+                "HE220A",
+                "TUBE TH 0.012 WT 0.22 DT 0.21"
             ],
             "recommended_profile": "HE220A",
             "confidence": "HIGH",
@@ -11096,8 +11096,8 @@
                 0.0
             ],
             "profiles": [
-                "TUBE TH 0.012 WT 0.22 DT 0.21",
-                "HE220A"
+                "HE220A",
+                "TUBE TH 0.012 WT 0.22 DT 0.21"
             ],
             "recommended_profile": "HE220A",
             "confidence": "HIGH",

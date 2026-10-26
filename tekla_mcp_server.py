@@ -823,6 +823,19 @@ def is_collinear_beam(
     )
 
 @mcp.tool()
+def create_span_beams():
+
+    model = get_model()
+
+    from product.core.span_beam_creator import (
+        create_span_beams
+    )
+
+    return create_span_beams(
+        model
+    )
+
+@mcp.tool()
 def detect_selected_split_beams():
 
     model = get_model()
@@ -855,15 +868,34 @@ def merge_detected_beam_chains():
 
     model = get_model()
 
-    chains = detect_beam_chains(
-        model,
-        is_collinear_beam
+    from product.core.span_beam_creator import (
+        create_span_beams
     )
 
-    return merge_all_safe_beam_chains(
-        model,
-        chains
+    return create_span_beams(
+        model
     )
+
+    result = []
+
+    for item in spans:
+
+        result.append(
+            {
+                "length":
+                    round(
+                        item["span"]["length"],
+                        0
+                    ),
+
+                "beam_count":
+                    len(
+                        item["beams"]
+                    )
+            }
+        )
+
+    return result
 
 @mcp.tool()
 def get_model_info():
@@ -1819,6 +1851,48 @@ def auto_cleanup_model():
         model,
         is_collinear_beam
     )
+
+@mcp.tool()
+def test_beam_spans():
+
+    model = get_model()
+
+    from product.core.beam_span_builder import (
+        build_beam_spans
+    )
+
+    spans = build_beam_spans(
+        model
+    )
+
+    result = []
+
+    for item in spans:
+
+        span = item["span"]
+
+        result.append(
+            {
+                "start_column":
+                    span["start_column"],
+
+                "end_column":
+                    span["end_column"],
+
+                "length":
+                    round(
+                        span["length"],
+                        0
+                    ),
+
+                "beam_count":
+                    len(
+                        item["beams"]
+                    )
+            }
+        )
+
+    return result
 
 # ----------------------------------------------------
 # MAIN
